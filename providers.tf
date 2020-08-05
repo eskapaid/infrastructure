@@ -14,6 +14,10 @@ terraform {
 provider "aws" {
   version = "~> 2"
   region  = "ap-southeast-1"
+
+  assume_role {
+    role_arn = var.tf_cloud_role # Set in Terraform Cloud Variables tab
+  }
 }
 
 # Use template file and fill in the computed values

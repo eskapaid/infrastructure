@@ -1,3 +1,8 @@
+variable "tf_cloud_role" {
+  type    = string
+  default = ""
+}
+
 variable "region" {
   default     = "ap-southeast-1"
   description = "The AWS region in which resources are created"
