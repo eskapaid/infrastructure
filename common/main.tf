@@ -1,0 +1,3 @@
+module "iam" {
+  source     = "./iam"
+}
