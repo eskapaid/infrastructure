@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: beacon-client
+  labels: 
+    app: beacon-client
+spec:
+  selector:
+    app: beacon-client
+  ports:
+    - protocol: TCP
+      port: {{ (index .Values "config" "p2p-tcp-port") | default 13000 }}
+      name: p2p-tcp
+    - protocol: UDP
+      port: {{ (index .Values "config" "p2p-udp-port") | default 12000 }}
+      name: p2p-udp
+    - protocol: TCP
+      port: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+      name: monitoring
+    - protocol: TCP
+      port: {{ (index .Values "config" "rpc-port") | default 4000 }}
+      name: rpc
+
+{{- if .Values.config }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: beacon-config
+data:
+  beacon-client.yaml: |
+{{ toYaml .Values.config | indent 4 }}
+{{- end }}
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: beacon-client
+  labels:
+    app: beacon-client
+spec:
+  selector:
+    matchLabels:
+      app: beacon-client
+  serviceName: beacon-client
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: beacon-client
+    spec:
+      containers:
+        - name: beacon-client
+          image: "{{ .Values.image }}:{{ .Values.imageTag | default "latest" }}"
+          {{- if .Values.containerArgs }}
+          args:
+{{ toYaml .Values.containerArgs | indent 12 }}
+          {{- end }}
+          resources: 
+{{ toYaml .Values.resources | indent 12 }}
+          livenessProbe:
+            failureThreshold: 60
+            httpGet:
+              path: /healthz
+              port: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: beacon-data-storage
+              mountPath: /data
+            {{- if .Values.config }}
+            - name: config-volume
+              mountPath: /data/config
+            {{- end }}
+          ports:
+            - name: p2p-tcp
+              containerPort: {{ (index .Values "config" "p2p-tcp-port") | default 13000 }}
+            - name: p2p-udp
+              containerPort: {{ (index .Values "config" "p2p-udp-port") | default 12000 }}
+            - name: monitoring
+              containerPort: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+            - name: rpc
+              containerPort: {{ (index .Values "config" "rpc-port") | default 4000 }}
+      volumes:
+        {{- if .Values.config }}
+        - name: config-volume
+          configMap:
+            name: beacon-config
+        {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: beacon-data-storage
+      spec:
+        storageClassName: manual
+        accessModes: 
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{ .Values.storage.capacity | quote }}

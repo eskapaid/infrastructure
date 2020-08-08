@@ -1,0 +1,96 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: validator
+  labels: 
+    app: validator
+spec:
+  selector:
+    app: validator
+  ports:
+    - protocol: TCP
+      port: {{ (index .Values "config" "p2p-tcp-port") | default 13000 }}
+      name: p2p-tcp
+    - protocol: UDP
+      port: {{ (index .Values "config" "p2p-udp-port") | default 12000 }}
+      name: p2p-udp
+    - protocol: TCP
+      port: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+      name: monitoring
+
+{{- if .Values.config }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: validator-config
+data:
+  validator.yaml: |
+{{ toYaml .Values.config | indent 4 }}
+{{- end }}
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: validator
+  labels:
+    app: validator
+spec:
+  selector:
+    matchLabels:
+      app: validator
+  serviceName: validator
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: validator
+    spec:
+      containers:
+        - name: validator
+          image: "{{ .Values.image }}:{{ .Values.imageTag | default "latest" }}"
+          {{- if .Values.config }}
+          args: ["--config-file","/data/config/validator.yaml"]
+          {{- end }}
+          resources: 
+{{ toYaml .Values.resources | indent 12 }}
+          livenessProbe:
+            failureThreshold: 60
+            httpGet:
+              path: /healthz
+              port: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: validator-data-storage
+              mountPath: /data
+            {{- if .Values.config }}
+            - name: config-volume
+              mountPath: /data/config
+            {{- end }}
+          ports:
+            - name: p2p-tcp
+              containerPort: {{ (index .Values "config" "p2p-tcp-port") | default 13000 }}
+            - name: p2p-udp
+              containerPort: {{ (index .Values "config" "p2p-udp-port") | default 12000 }}
+            - name: monitoring
+              containerPort: {{ (index .Values "config" "monitoring-port") | default 8080 }}
+      volumes:
+        {{- if .Values.config }}
+        - name: config-volume
+          configMap:
+            name: validator-config
+        {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: validator-data-storage
+      spec:
+        storageClassName: manual
+        accessModes: 
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{ .Values.storage.capacity | quote }}
