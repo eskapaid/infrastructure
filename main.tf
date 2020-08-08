@@ -1,8 +1,8 @@
 # Deploy various services to K8s
 module "services" {
-  source       = "./services"
-  environment  = var.environment
-  cluster_name = module.eks.cluster_id
+  source      = "./services"
+  environment = var.environment
+  # cluster_name = module.eks.cluster_id
   # oidc_issuer_url        = module.eks.cluster_oidc_issuer_url
   # grafana_admin_password = var.grafana_admin_password
   # papertrail_uri         = var.papertrail_uri
