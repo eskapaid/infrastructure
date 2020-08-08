@@ -1,5 +1,5 @@
 image: gcr.io/prysmaticlabs/prysm/beacon-chain
-imageTag: latest #TODO lock to a tag more stable
+imageTag: v1.0.0-alpha.18
 
 replicas: 1
 
