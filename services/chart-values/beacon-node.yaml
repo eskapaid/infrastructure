@@ -6,16 +6,15 @@ replicas: 1
 containerArgs:
   - "--config-file"
   - "/data/config/beacon-client.yaml"
-  - "--p2p-tcp-port=31300"
-  - "--p2p-udp-port=31200"
-  - "--rpc-host=0.0.0.0"
 
 #TODO add p2p-host-ip. How to get public address?
 config:
   datadir: /data
   p2p-tcp-port: 31300
   p2p-udp-port: 31200
-  p2p-host-ip: 178.128.62.28 #TODO do this better
+  monitoring-port: 8080
+  rpc-host: 0.0.0.0
+  monitoring-host: 0.0.0.0
   log-file: /data/beacon.log
   verbosity: info
 
