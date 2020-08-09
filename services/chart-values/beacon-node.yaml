@@ -6,6 +6,7 @@ replicas: 1
 containerArgs:
   - "--config-file"
   - "/data/config/beacon-client.yaml"
+  - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
 
 #TODO add p2p-host-ip. How to get public address?
 config:
