@@ -21,5 +21,12 @@ TODO
 - [x] Create terraform user
 - [x] Create TF Cloud role and add to TF Cloud
 - [x] Add keys to TF Cloud
+- [ ] Create K8s key(s) with launchpad key files
+- [ ] Run one off pod to import lauchpad keys `accounts-v2 import` with `/data` volume mapped
 - [ ] Add Slasher Helm chart - https://docs.prylabs.network/docs/prysm-usage/slasher/
 
+- Prometheus Operator
+- Grafana dashboard
+- Secure connections
+- Centralised logs
+- Run OpenEthereum node
