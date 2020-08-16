@@ -1,20 +1,26 @@
 image: gcr.io/prysmaticlabs/prysm/validator
-imageTag: v1.0.0-alpha.18
+imageTag: v1.0.0-alpha.20
 
 replicas: 1
 
 config:
   datadir: /data
   p2p-tcp-port: 13000
+  monitoring-host: 0.0.0.0
+  monitoring-port: 8081
   beacon-rpc-provider: "beacon-client:4000"
+  wallet-dir: /data/wallet
+  wallet-password-file: /data/password.txt
   log-file: /data/validator.log
   verbosity: info
 
 storage:
-  capacity: "1Gi"
+  capacity: 1Gi
 
 resources:
-  limits:
-    memory: "2Gi"
   requests:
-    memory: "1Gi"
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 200m
+    memory: 512Mi

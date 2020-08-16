@@ -1,5 +1,5 @@
 image: gcr.io/prysmaticlabs/prysm/beacon-chain
-imageTag: v1.0.0-alpha.18
+imageTag: v1.0.0-alpha.20
 
 replicas: 1
 
@@ -13,6 +13,8 @@ config:
   datadir: /data
   p2p-tcp-port: 31300
   p2p-udp-port: 31200
+  p2p-max-peers: 500
+  block-batch-limit: 512
   monitoring-port: 8080
   rpc-host: 0.0.0.0
   monitoring-host: 0.0.0.0
@@ -20,10 +22,10 @@ config:
   verbosity: info
 
 storage:
-  capacity: "20Gi"
+  capacity: 20Gi
 
 resources:
-  limits:
-    memory: "4Gi"
   requests:
-    memory: "3Gi"
+    memory: 3Gi
+  limits:
+    memory: 4Gi
