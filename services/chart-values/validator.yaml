@@ -5,12 +5,12 @@ replicas: 1
 
 config:
   datadir: /data
+  wallet-dir: /data/keystore
+  wallet-password-file: /data/password.txt
   p2p-tcp-port: 13000
   monitoring-host: 0.0.0.0
   monitoring-port: 8081
   beacon-rpc-provider: "beacon-client:4000"
-  wallet-dir: /data/wallet
-  wallet-password-file: /data/password.txt
   log-file: /data/validator.log
   verbosity: info
 
