@@ -5,8 +5,8 @@ replicas: 1
 
 config:
   datadir: /data
-  wallet-dir: /data/keystore
-  wallet-password-file: /data/password.txt
+  wallet-dir: /wallet
+  wallet-password-file: /wallet/password/password.txt
   p2p-tcp-port: 13000
   monitoring-host: 0.0.0.0
   monitoring-port: 8081
