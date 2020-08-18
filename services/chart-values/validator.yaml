@@ -1,5 +1,5 @@
 image: gcr.io/prysmaticlabs/prysm/validator
-imageTag: v1.0.0-alpha.22
+imageTag: v1.0.0-alpha.23
 
 replicas: 1
 
