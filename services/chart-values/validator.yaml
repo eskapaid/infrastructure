@@ -13,6 +13,7 @@ config:
   beacon-rpc-provider: "beacon-client:4000"
   log-file: /data/validator.log
   verbosity: info
+  graffiti: poap2+qxp/4v6Qf8wL84AXIINsq45egA
 
 storage:
   capacity: 1Gi
