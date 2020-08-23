@@ -27,6 +27,8 @@ storage:
 
 resources:
   requests:
-    memory: 3Gi
+    cpu: 250m
+    memory: 2Gi
   limits:
-    memory: 4Gi
+    cpu: 500m
+    memory: 3Gi

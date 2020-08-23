@@ -33,7 +33,9 @@ storage:
   capacity: 20Gi
 
 resources:
-  limits:
-    memory: 8Gi
   requests:
-    memory: 4Gi
+    cpu: 250m
+    memory: 2Gi
+  limits:
+    cpu: 500m
+    memory: 3Gi
