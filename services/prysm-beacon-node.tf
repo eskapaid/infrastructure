@@ -4,7 +4,7 @@ resource "helm_release" "beacon_node" {
   namespace = kubernetes_namespace.services.metadata.0.name
 
   values = [
-    templatefile("${path.module}/chart-values/beacon-node.yaml", {
+    templatefile("${path.module}/values/prysm-beacon-node.yaml", {
       environment = var.environment
     })
   ]

@@ -1,3 +1,7 @@
 [submodule "services/charts/prysm"]
 	path = services/charts/prysm
 	url = https://github.com/eskapaid/prysm-helm
+
+[submodule "services/charts/lighthouse"]
+	path = services/charts/lighthouse
+	url = https://github.com/eskapaid/lighthouse-helm

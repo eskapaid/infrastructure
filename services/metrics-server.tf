@@ -6,7 +6,7 @@ resource "helm_release" "metrics_server" {
   version    = "2.11.1"
 
   values = [
-    templatefile("${path.module}/chart-values/metrics-server.yaml", {
+    templatefile("${path.module}/values/metrics-server.yaml", {
       # any template vars go here
     })
   ]
