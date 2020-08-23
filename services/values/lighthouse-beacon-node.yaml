@@ -9,7 +9,7 @@ container:
     - lighthouse
     - beacon_node
   args:
-    - --data-dir
+    - --datadir
     - /data
     - --debug-level
     - info
