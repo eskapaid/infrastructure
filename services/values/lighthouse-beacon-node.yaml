@@ -22,7 +22,7 @@ container:
     - --ws-address
     - "0.0.0.0"
     - --eth1-endpoint
-    - https://cloudflare-eth.com
+    - ${alchemy_url}
     - --graffiti
     - poap2+qxp/4v6Qf8wL84AXIINsq45egB
 
