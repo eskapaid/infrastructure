@@ -1,4 +1,4 @@
-data "aws_ssm_parameter" "eth1endpoint" {
+data "aws_ssm_parameter" "lighthouse_eth1endpoint" {
   name = "/staging/lighthouse/eth1endpoint"
 }
 
@@ -10,7 +10,7 @@ resource "helm_release" "lighthouse_beacon_node" {
   values = [
     templatefile("${path.module}/values/lighthouse-beacon-node.yaml", {
       environment  = var.environment
-      eth1endpoint = data.aws_ssm_parameter.eth1endpoint.value
+      eth1endpoint = data.aws_ssm_parameter.lighthouse_eth1endpoint.value
     })
   ]
 }
