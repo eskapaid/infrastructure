@@ -1,3 +1,7 @@
+data "aws_ssm_parameter" "web3provider" {
+  name = "/staging/prysm/web3provider"
+}
+
 resource "helm_release" "beacon_node" {
   name      = "prysm-beacon-node"
   chart     = "${path.module}/charts/prysm/beacon-node"
@@ -5,7 +9,8 @@ resource "helm_release" "beacon_node" {
 
   values = [
     templatefile("${path.module}/values/prysm-beacon-node.yaml", {
-      environment = var.environment
+      environment  = var.environment
+      web3provider = data.aws_ssm_parameter.web3provider.value
     })
   ]
 }
