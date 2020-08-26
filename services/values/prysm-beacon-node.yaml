@@ -8,7 +8,7 @@ containerArgs:
   - /data/config/beacon-client.yaml
   - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
   - --dev
-  - --web3provider=${web3provider}
+  - --http-web3provider=${web3provider}
 
 #TODO add p2p-host-ip. How to get public address?
 config:
