@@ -1,5 +1,5 @@
-data "aws_ssm_parameter" "web3provider" {
-  name = "/staging/prysm/web3provider"
+data "aws_ssm_parameter" "eth1endpoint" {
+  name = "/staging/prysm/eth1endpoint"
 }
 
 resource "helm_release" "beacon_node" {
@@ -10,7 +10,7 @@ resource "helm_release" "beacon_node" {
   values = [
     templatefile("${path.module}/values/prysm-beacon-node.yaml", {
       environment  = var.environment
-      web3provider = data.aws_ssm_parameter.web3provider.value
+      eth1endpoint = data.aws_ssm_parameter.eth1endpoint.value
     })
   ]
 }
