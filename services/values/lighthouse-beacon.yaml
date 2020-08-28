@@ -9,22 +9,15 @@ container:
     - lighthouse
     - beacon_node
   args:
-    - --datadir
-    - /data
-    - --debug-level
-    - info
-    - --testnet
-    - medalla
+    - --datadir=/data
+    - --debug-level=info
+    - --testnet=medalla
     - --http
-    - --http-address
-    - "0.0.0.0"
+    - --http-address="0.0.0.0"
     - --ws
-    - --ws-address
-    - "0.0.0.0"
-    - --eth1-endpoint
-    - ${eth1endpoint}
-    - --graffiti
-    - poap2+qxp/4v6Qf8wL84AXIINsq45egB
+    - --ws-address="0.0.0.0"
+    - --eth1-endpoint=${eth1endpoint}
+    - --graffiti='poap2+qxp/4v6Qf8wL84AXIINsq45egB'
 
 ports:
   metrics: 5052
