@@ -8,7 +8,7 @@ resource "helm_release" "beacon_node" {
   namespace = kubernetes_namespace.services.metadata.0.name
 
   values = [
-    templatefile("${path.module}/values/prysm-beacon-node.yaml", {
+    templatefile("${path.module}/values/prysm-beacon.yaml", {
       environment  = var.environment
       eth1endpoint = data.aws_ssm_parameter.prysm_eth1endpoint.value
     })
