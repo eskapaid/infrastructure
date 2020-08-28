@@ -1,5 +1,6 @@
-image: gcr.io/prysmaticlabs/prysm/validator
-imageTag: v1.0.0-alpha.23
+image:
+  repository: gcr.io/prysmaticlabs/prysm/validator
+  tag: v1.0.0-alpha.23
 
 replicas: 1
 
@@ -10,7 +11,7 @@ config:
   p2p-tcp-port: 13000
   monitoring-host: 0.0.0.0
   monitoring-port: 8081
-  beacon-rpc-provider: "beacon-client:4000"
+  beacon-rpc-provider: prysm-beacon:4000
   log-file: /data/validator.log
   verbosity: info
   graffiti: poap2+qxp/4v6Qf8wL84AXIINsq45egA

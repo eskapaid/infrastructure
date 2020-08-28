@@ -1,11 +1,12 @@
-image: gcr.io/prysmaticlabs/prysm/beacon-chain
-imageTag: v1.0.0-alpha.23
+image:
+  repository: gcr.io/prysmaticlabs/prysm/beacon-chain
+  tag: v1.0.0-alpha.23
 
 replicas: 1
 
 containerArgs:
   - --config-file
-  - /data/config/beacon-client.yaml
+  - /data/config/prysm-beacon.yaml
   - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
   - --dev
   - --http-web3provider=${eth1endpoint}

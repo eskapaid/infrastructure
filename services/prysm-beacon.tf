@@ -2,9 +2,9 @@ data "aws_ssm_parameter" "prysm_eth1endpoint" {
   name = "/staging/prysm/eth1endpoint"
 }
 
-resource "helm_release" "beacon_node" {
-  name      = "prysm-beacon-node"
-  chart     = "${path.module}/charts/prysm/beacon-node"
+resource "helm_release" "prysm_beacon" {
+  name      = "prysm-beacon"
+  chart     = "${path.module}/charts/prysm/beacon"
   namespace = kubernetes_namespace.services.metadata.0.name
 
   values = [
