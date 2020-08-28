@@ -43,7 +43,7 @@ slasher:
     tag: v1.0.0-alpha.23
 
   args:
-    - --beacon-rpc-provider=beacon-client:4000
+    - --beacon-rpc-provider=prysm-beacon:4000
     - --datadir=/data
     - --rpc-host=0.0.0.0
     - --monitoring-host=0.0.0.0
