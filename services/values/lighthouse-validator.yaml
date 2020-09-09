@@ -25,10 +25,10 @@ container:
 secretMounts:
   - name: keystore
     secretName: lighthouse-keystore-0x90a401
-    path: /data/validators/0x90a401
+    path: /data/mount/0x90a401
   - name: definitions
     secretName: lighthouse-definitions-0x90a401
-    path: /data/validators
+    path: /data/mount
 
 ports:
   metrics: 5052
