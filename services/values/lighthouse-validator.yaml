@@ -24,10 +24,10 @@ container:
 # A list of secrets and their paths to mount inside the pod
 secretMounts:
   - name: keystore
-    secretName: keystore
-    path: /data/0x0000/keystore.json
+    secretName: lighthouse-keystore-0x90a401
+    path: /data/0x90a401/keystore.json
   - name: validator_definitions
-    secretName: validator_definitions
+    secretName: lighthouse-definitions-0x90a401
     path: /data/validator_definitions.yml
 
 ports:
