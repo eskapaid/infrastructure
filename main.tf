@@ -76,8 +76,8 @@ module "eks" {
   worker_groups = [
     {
       instance_type        = "t3a.large"
-      asg_desired_capacity = "1"
-      asg_min_size         = "1"
+      asg_desired_capacity = "2"
+      asg_min_size         = "2"
       asg_max_size         = "2"
       root_volume_size     = "20"
     }
