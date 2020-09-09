@@ -16,6 +16,17 @@ config:
   verbosity: info
   graffiti: poap2+qxp/4v6Qf8wL84AXIINsq45egA
 
+secretMounts:
+  - name: keymanageropts
+    secretName: keymanageropts
+    mountPath: /wallet/direct
+  - name: keystore
+    secretName: keystore
+    mountPath: /wallet/direct/accounts
+  - name: password
+    secretName: password
+    mountPath: /wallet/password
+
 storage:
   capacity: 1Gi
 
