@@ -22,6 +22,9 @@ container:
     - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
 
 # A list of secrets and their paths to mount inside the pod
+# keystore secret containing keystore.json
+# definitions secrets containing validator_definitions.yml
+# These will be copied by initContainer from /data/mount to /data/validators
 secretMounts:
   - name: keystore
     secretName: lighthouse-keystore-0x90a401
