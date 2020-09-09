@@ -1,0 +1,45 @@
+image:
+  repository: sigp/lighthouse
+  tag: latest
+
+replicas: 1
+
+container:
+  command:
+    - lighthouse
+    - validator_client
+  args:
+    - --datadir
+    - /data
+    - --debug-level
+    - info
+    - --disable-auto-discover
+    - --testnet
+    - medalla
+    - --server
+    - http://lighthouse-beacon:5052
+    - --graffiti
+    - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
+
+# A list of secrets and their paths to mount inside the pod
+secretMounts:
+  - name: keystore
+    secretName: keystore
+    path: /data/0x0000/keystore.json
+  - name: validator_definitions
+    secretName: validator_definitions
+    path: /data/validator_definitions.yml
+
+ports:
+  metrics: 5052
+
+storage:
+  capacity: 1Gi
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 200m
+    memory: 512Mi

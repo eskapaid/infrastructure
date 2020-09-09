@@ -16,3 +16,11 @@ to get kubeconfig for "develop" cluster by using admin role run:
 Test access to the cluster:
 
     kubectl cluster-info
+
+Creating validator secrets manually right now:
+
+    $ k create secret generic lighthouse-keystore-0x90a401 --from-file 0x90a401/keystore.json
+    secret/lighthouse-keystore-0x90a401 created
+
+    $ k create secret generic lighthouse-definitions-0x90a401 --from-file validator_definitions.yml
+    secret/lighthouse-definitions-0x90a401 created

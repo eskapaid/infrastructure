@@ -19,8 +19,6 @@ container:
     - --ws-address
     - "0.0.0.0"
     - --eth1-endpoint=${eth1endpoint}
-    - --graffiti
-    - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
 
 ports:
   metrics: 5052
