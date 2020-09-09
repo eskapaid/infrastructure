@@ -26,7 +26,7 @@ secretMounts:
   - name: keystore
     secretName: lighthouse-keystore-0x90a401
     path: /data/0x90a401/keystore.json
-  - name: validator_definitions
+  - name: definitions
     secretName: lighthouse-definitions-0x90a401
     path: /data/validator_definitions.yml
 
