@@ -6,8 +6,8 @@ replicas: 1
 
 config:
   datadir: /data
-  wallet-dir: /wallet
-  wallet-password-file: /wallet/password/password.txt
+  wallet-dir: /data/wallet
+  wallet-password-file: /data/wallet/password/password.txt
   p2p-tcp-port: 13000
   monitoring-host: 0.0.0.0
   monitoring-port: 8081
@@ -16,16 +16,19 @@ config:
   verbosity: info
   graffiti: poap2+qxp/4v6Qf8wL84AXIINsq45egA
 
+# A list of secrets and their paths to mount inside the initContainer
+# initContainer will copy these to /data/wallet to be available
+# in the main container
 secretMounts:
   - name: keymanageropts
     secretName: keymanageropts
-    mountPath: /wallet/direct
+    mountPath: /data/mount/direct
   - name: keystore
     secretName: keystore
-    mountPath: /wallet/direct/accounts
+    mountPath: /data/mount/direct/accounts
   - name: password
     secretName: password
-    mountPath: /wallet/password
+    mountPath: /data/mount/password
 
 storage:
   capacity: 1Gi
