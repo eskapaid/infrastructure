@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
-  tag: v1.0.0-alpha.26
+  tag: v1.0.0-alpha.27
 
 replicas: 1
 
@@ -14,9 +14,9 @@ containerArgs:
 #TODO add p2p-host-ip. How to get public address?
 config:
   datadir: /data
-  p2p-tcp-port: 31300
-  p2p-udp-port: 31200
-  p2p-max-peers: 500
+  p2p-tcp-port: 13000
+  p2p-udp-port: 12000
+  p2p-max-peers: 50
   block-batch-limit: 512
   monitoring-port: 8080
   rpc-host: 0.0.0.0
@@ -40,7 +40,7 @@ slasher:
 
   image:
     repository: gcr.io/prysmaticlabs/prysm/slasher
-    tag: v1.0.0-alpha.26
+    tag: v1.0.0-alpha.27
 
   args:
     - --beacon-rpc-provider=prysm-beacon:4000

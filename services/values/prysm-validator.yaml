@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/validator
-  tag: v1.0.0-alpha.25
+  tag: v1.0.0-alpha.27
 
 replicas: 1
 
