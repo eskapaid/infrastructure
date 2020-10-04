@@ -36,6 +36,7 @@ resource "aws_security_group" "eth_nodes" {
   }
 
   tags = {
+    Name        = "eth-nodes"
     Environment = var.environment
   }
 }

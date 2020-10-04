@@ -13,4 +13,6 @@ resource "helm_release" "rocketpool" {
       infura_id   = data.aws_ssm_parameter.rocketpool_infura.value
     })
   ]
+
+  depends_on = [helm_release.efs_provisioner]
 }
