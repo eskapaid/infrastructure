@@ -46,15 +46,17 @@ resource "aws_security_group" "efs" {
   vpc_id = module.vpc.vpc_id
 
   ingress {
-    from_port = 2049
-    to_port   = 2049
-    protocol  = "tcp"
+    from_port       = 2049
+    to_port         = 2049
+    protocol        = "tcp"
+    security_groups = [module.eks.worker_security_group_id]
   }
 
   egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    security_groups = [module.eks.worker_security_group_id]
   }
 
   tags = {
