@@ -1,0 +1,11 @@
+efsProvisioner:
+  efsFileSystemId: ${efs_id}
+  awsRegion: ${region}
+
+resources:
+  limits:
+   cpu: 200m
+   memory: 128Mi
+  requests:
+   cpu: 100m
+   memory: 128Mi

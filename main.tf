@@ -2,6 +2,8 @@
 module "services" {
   source      = "./services"
   environment = var.environment
+  region      = data.aws_region.current.name
+  efs_id      = aws_efs_file_system.rocketpool.id
   # cluster_name = module.eks.cluster_id
   # oidc_issuer_url        = module.eks.cluster_oidc_issuer_url
   # grafana_admin_password = var.grafana_admin_password

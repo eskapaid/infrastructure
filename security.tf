@@ -8,6 +8,7 @@ resource "aws_security_group" "eth_nodes" {
     from_port   = 12000
     to_port     = 12000
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Prysm UDP"
   }
 
   ingress {
@@ -15,6 +16,7 @@ resource "aws_security_group" "eth_nodes" {
     from_port   = 13000
     to_port     = 13000
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Prysm TCP"
   }
 
   ingress {
@@ -22,6 +24,7 @@ resource "aws_security_group" "eth_nodes" {
     from_port   = 9000
     to_port     = 9000
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Lighthouse UDP"
   }
 
   ingress {
@@ -29,6 +32,7 @@ resource "aws_security_group" "eth_nodes" {
     from_port   = 9000
     to_port     = 9000
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Lighthouse TCP"
   }
 
   tags = {
