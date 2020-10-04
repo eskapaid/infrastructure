@@ -14,5 +14,15 @@ resource "helm_release" "rocketpool" {
     })
   ]
 
-  depends_on = [helm_release.efs_provisioner]
+  depends_on = [helm_release.efs_provisioner, kubernetes_secret.infura_id]
+}
+
+resource "kubernetes_secret" "infura_id" {
+  metadata {
+    name = "rocketpool-infura-id"
+  }
+
+  data = {
+    infura-id = data.aws_ssm_parameter.rocketpool_infura.value
+  }
 }

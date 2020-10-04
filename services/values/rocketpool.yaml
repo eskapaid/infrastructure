@@ -29,7 +29,7 @@ config:
     validatorKeychainPath: /.rocketpool/data/validators
   chains:
     eth1:
-      provider: http://eth1:8545
+      provider: http://rocketpool-proxy:8545
       client:
         options:
         - id: geth
