@@ -1,6 +1,6 @@
 resource "helm_release" "efs_provisioner" {
   name      = "efs-provisioner"
-  chart     = "stable/efs-provisioner"
+  chart     = "efs-provisioner"
   namespace = "default"
 
   values = [
