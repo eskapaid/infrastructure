@@ -5,3 +5,7 @@
 [submodule "services/charts/lighthouse"]
 	path = services/charts/lighthouse
 	url = https://github.com/eskapaid/lighthouse-helm
+
+[submodule "services/charts/rocketpool"]
+	path = services/charts/rocketpool
+	url = https://github.com/eskapaid/rocketpool-helm
