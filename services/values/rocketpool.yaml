@@ -53,7 +53,7 @@ config:
             regex: ^[0-9a-fA-F]{32}$
             required: true
     eth2:
-      provider: lighthouse-beacon:5052
+      provider: http://lighthouse-beacon:5052
       client:
         options:
         - id: lighthouse
