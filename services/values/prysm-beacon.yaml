@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
-  tag: v1.0.0-alpha.27
+  tag: v1.0.0-alpha.28
 
 replicas: 1
 
@@ -40,7 +40,7 @@ slasher:
 
   image:
     repository: gcr.io/prysmaticlabs/prysm/slasher
-    tag: v1.0.0-alpha.27
+    tag: v1.0.0-alpha.28
 
   args:
     - --beacon-rpc-provider=prysm-beacon:4000
