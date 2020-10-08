@@ -5,7 +5,7 @@ image:
 
 storageAddress: 0xbbCbc87447fE120E1Bc73dBd11bc4Dc1086FFa25
 
-# for now it has to be this as node has this hardcoded
+# for now it has to be this as node service has this hardcoded
 datadir: /.rocketpool
 
 eth1:
