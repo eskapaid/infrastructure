@@ -5,7 +5,7 @@ image:
 
 storageAddress: 0xbbCbc87447fE120E1Bc73dBd11bc4Dc1086FFa25
 
-# for now it has to be this
+# for now it has to be this as node has this hardcoded
 datadir: /.rocketpool
 
 eth1:
@@ -13,7 +13,6 @@ eth1:
   proxy: true
   infuraId: ${infura_id}
 
-# probably not even needed
 eth2:
   provider: http://lighthouse-beacon:5052
 
@@ -39,18 +38,6 @@ validator:
     tag: v0.2.13
     pullPolicy: IfNotPresent
 
-  container:
-    command:
-      - lighthouse
-      - validator_client
-    args:
-      - --datadir
-      - /data/validators/lighthouse
-      - --debug-level
-      - info
-      - --testnet
-      - medalla
-      - --server
-      - http://lighthouse-beacon:5052
-      - --graffiti
-      - Lighthouse Validator
+  debugLevel: info
+  testnet: medalla
+  graffiti: Lighthouse Validator
