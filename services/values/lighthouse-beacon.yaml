@@ -19,9 +19,10 @@ container:
     - --ws-address
     - "0.0.0.0"
     - --eth1-endpoint=${eth1endpoint}
+    - --metrics
 
 ports:
-  metrics: 5052
+  metrics: 5054
   websocket: 5053
   discovery: 9000
 
