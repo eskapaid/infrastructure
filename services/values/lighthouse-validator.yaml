@@ -10,16 +10,17 @@ container:
     - validator_client
   args:
     - --datadir
-    - /data
+    - /data/medalla
     - --debug-level
     - info
     - --disable-auto-discover
     - --testnet
     - medalla
-    - --server
+    - --beacon-node
     - http://lighthouse-beacon:5052
     - --graffiti
     - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
+    - --init-slashing-protection
 
 # A list of secrets and their paths to mount inside the pod
 # keystore secret containing keystore.json

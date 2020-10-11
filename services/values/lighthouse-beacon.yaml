@@ -9,7 +9,7 @@ container:
     - lighthouse
     - beacon_node
   args:
-    - --datadir=/data
+    - --datadir=/data/medalla
     - --debug-level=info
     - --testnet=medalla
     - --http
