@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: latest
+  tag: v0.3.0
 
 replicas: 1
 
@@ -10,7 +10,7 @@ container:
     - validator_client
   args:
     - --datadir
-    - /data/validators
+    - /data
     - --debug-level
     - info
     - --disable-auto-discover

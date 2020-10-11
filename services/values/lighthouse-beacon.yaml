@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: latest
+  tag: v0.3.0
 
 replicas: 1
 
