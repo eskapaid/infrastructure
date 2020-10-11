@@ -18,8 +18,10 @@ container:
     - --ws
     - --ws-address
     - "0.0.0.0"
-    - --eth1-endpoint=${eth1endpoint}
     - --metrics
+    - --metrics-address
+    - "0.0.0.0"
+    - --eth1-endpoint=${eth1endpoint}
 
 ports:
   metrics: 5054
