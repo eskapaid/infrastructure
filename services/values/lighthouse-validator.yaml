@@ -10,7 +10,7 @@ container:
     - validator_client
   args:
     - --datadir
-    - /data/medalla
+    - /data
     - --debug-level
     - info
     - --disable-auto-discover
