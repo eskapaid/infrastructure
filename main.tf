@@ -77,6 +77,7 @@ module "eks" {
 
   worker_groups = [
     {
+      name                          = "public-workers"
       instance_type                 = "t3a.large"
       asg_desired_capacity          = "1"
       root_volume_size              = "20"
@@ -86,6 +87,7 @@ module "eks" {
       kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
     },
     {
+      name                 = "private-workers"
       instance_type        = "t3a.large"
       asg_desired_capacity = "1"
       root_volume_size     = "20"
