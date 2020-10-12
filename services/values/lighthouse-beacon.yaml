@@ -38,3 +38,13 @@ resources:
   limits:
     cpu: 500m
     memory: 3Gi
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: eskapa.id/subnet
+              operator: In
+              values:
+                - public
