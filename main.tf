@@ -80,6 +80,7 @@ module "eks" {
       instance_type                 = "t3a.large"
       asg_desired_capacity          = "1"
       root_volume_size              = "20"
+      public_ip                     = true
       subnets                       = module.vpc.public_subnets
       additional_security_group_ids = [aws_security_group.eth_nodes.id]
       kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
