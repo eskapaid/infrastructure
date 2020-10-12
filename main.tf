@@ -37,11 +37,13 @@ module "vpc" {
 }
 
 module "eks" {
-  source                               = "terraform-aws-modules/eks/aws"
-  version                              = "12.2.0"
-  cluster_name                         = "eks-${var.environment}"
-  cluster_version                      = var.cluster_version
-  subnets                              = concat(module.vpc.public_subnets, module.vpc.private_subnets)
+  source          = "terraform-aws-modules/eks/aws"
+  version         = "12.2.0"
+  cluster_name    = "eks-${var.environment}"
+  cluster_version = var.cluster_version
+  # put instances in public subnets for better beacon nodes connectivity - don't have to go through nat
+  # subnets                              = concat(module.vpc.public_subnets, module.vpc.private_subnets)
+  subnets                              = module.vpc.public_subnets
   vpc_id                               = module.vpc.vpc_id
   worker_additional_security_group_ids = [aws_security_group.eth_nodes.id]
   worker_ami_name_filter               = "amazon-eks-node-1.17-v20200723" # https://github.com/awslabs/amazon-eks-ami/releases

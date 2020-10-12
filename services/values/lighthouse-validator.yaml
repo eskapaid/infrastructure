@@ -21,6 +21,7 @@ container:
     - --graffiti
     - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
     - --init-slashing-protection
+    - --delete-lockfiles
 
 # A list of secrets and their paths to mount inside the pod
 # keystore secret containing keystore.json
