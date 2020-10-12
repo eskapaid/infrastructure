@@ -80,6 +80,8 @@ module "eks" {
       name                          = "public-workers"
       instance_type                 = "t3a.large"
       asg_desired_capacity          = "1"
+      asg_max_size                  = "1"
+      asg_min_size                  = "1"
       root_volume_size              = "20"
       public_ip                     = true
       subnets                       = module.vpc.public_subnets
@@ -90,6 +92,8 @@ module "eks" {
       name                 = "private-workers"
       instance_type        = "t3a.large"
       asg_desired_capacity = "1"
+      asg_max_size         = "1"
+      asg_min_size         = "1"
       root_volume_size     = "20"
       subnets              = module.vpc.private_subnets
       kubelet_extra_args   = "--node-labels=eskapa.id/subnet=private"
