@@ -37,13 +37,11 @@ module "vpc" {
 }
 
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  version         = "12.2.0"
-  cluster_name    = "eks-${var.environment}"
-  cluster_version = var.cluster_version
-  # put instances in public subnets for better beacon nodes connectivity - don't have to go through nat
-  # subnets                              = concat(module.vpc.public_subnets, module.vpc.private_subnets)
-  subnets                              = module.vpc.public_subnets
+  source                               = "terraform-aws-modules/eks/aws"
+  version                              = "12.2.0"
+  cluster_name                         = "eks-${var.environment}"
+  cluster_version                      = var.cluster_version
+  subnets                              = concat(module.vpc.public_subnets, module.vpc.private_subnets)
   vpc_id                               = module.vpc.vpc_id
   worker_additional_security_group_ids = [aws_security_group.eth_nodes.id]
   worker_ami_name_filter               = "amazon-eks-node-1.17-v20200723" # https://github.com/awslabs/amazon-eks-ami/releases
@@ -81,10 +79,17 @@ module "eks" {
   worker_groups = [
     {
       instance_type        = "t3a.large"
-      asg_desired_capacity = "2"
-      asg_min_size         = "2"
-      asg_max_size         = "2"
+      asg_desired_capacity = "1"
       root_volume_size     = "20"
+      subnets              = module.vpc.public_subnets
+      kubelet_extra_args   = "--node-labels=eskapa.id/subnet=public"
+    },
+    {
+      instance_type        = "t3a.large"
+      asg_desired_capacity = "1"
+      root_volume_size     = "20"
+      subnets              = module.vpc.private_subnets
+      kubelet_extra_args   = "--node-labels=eskapa.id/subnet=private"
     }
   ]
 
