@@ -1,8 +1,9 @@
 image:
   repository: sigp/lighthouse
   tag: v0.3.0
+  pullPolicy: IfNotPresent
 
-replicas: 1
+replicaCount: 1
 
 container:
   command:

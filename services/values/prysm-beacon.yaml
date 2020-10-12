@@ -1,8 +1,9 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
   tag: v1.0.0-alpha.28
+  pullPolicy: IfNotPresent
 
-replicas: 1
+replicaCount: 1
 
 containerArgs:
   - --config-file
@@ -34,6 +35,17 @@ resources:
   limits:
     cpu: 500m
     memory: 4Gi
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: eskapa.id/subnet
+              operator: In
+              values:
+                - public
+
 
 slasher:
   enabled: true
