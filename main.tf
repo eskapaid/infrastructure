@@ -37,23 +37,22 @@ module "vpc" {
 }
 
 module "eks" {
-  source                               = "terraform-aws-modules/eks/aws"
-  version                              = "12.2.0"
-  cluster_name                         = "eks-${var.environment}"
-  cluster_version                      = var.cluster_version
-  subnets                              = concat(module.vpc.public_subnets, module.vpc.private_subnets)
-  vpc_id                               = module.vpc.vpc_id
-  worker_additional_security_group_ids = [aws_security_group.eth_nodes.id]
-  worker_ami_name_filter               = "amazon-eks-node-1.17-v20200723" # https://github.com/awslabs/amazon-eks-ami/releases
-  enable_irsa                          = false
-  cluster_endpoint_private_access      = true
-  cluster_endpoint_public_access       = true
-  cluster_enabled_log_types            = ["api", "audit", "authenticator"]
-  manage_cluster_iam_resources         = true
-  manage_worker_iam_resources          = true
-  cluster_log_retention_in_days        = "90"
-  config_output_path                   = "./"
-  write_kubeconfig                     = false
+  source                          = "terraform-aws-modules/eks/aws"
+  version                         = "12.2.0"
+  cluster_name                    = "eks-${var.environment}"
+  cluster_version                 = var.cluster_version
+  subnets                         = concat(module.vpc.public_subnets, module.vpc.private_subnets)
+  vpc_id                          = module.vpc.vpc_id
+  worker_ami_name_filter          = "amazon-eks-node-1.17-v20200723" # https://github.com/awslabs/amazon-eks-ami/releases
+  enable_irsa                     = false
+  cluster_endpoint_private_access = true
+  cluster_endpoint_public_access  = true
+  cluster_enabled_log_types       = ["api", "audit", "authenticator"]
+  manage_cluster_iam_resources    = true
+  manage_worker_iam_resources     = true
+  cluster_log_retention_in_days   = "90"
+  config_output_path              = "./"
+  write_kubeconfig                = false
 
   map_roles = [
     # Administrator access to K8s
@@ -78,11 +77,12 @@ module "eks" {
 
   worker_groups = [
     {
-      instance_type        = "t3a.large"
-      asg_desired_capacity = "1"
-      root_volume_size     = "20"
-      subnets              = module.vpc.public_subnets
-      kubelet_extra_args   = "--node-labels=eskapa.id/subnet=public"
+      instance_type                 = "t3a.large"
+      asg_desired_capacity          = "1"
+      root_volume_size              = "20"
+      subnets                       = module.vpc.public_subnets
+      additional_security_group_ids = [aws_security_group.eth_nodes.id]
+      kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
     },
     {
       instance_type        = "t3a.large"
