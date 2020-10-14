@@ -20,7 +20,6 @@ eth2:
   prysm: true
   provider: http://prysm-beacon:4000
 
-
 storage:
   capacity: 1Gi
 
@@ -35,7 +34,7 @@ resources:
 ports:
   metrics: 5052
 
-# Currently only Lighthouse + Infura is supported
+# Currently only Infura as eth1 client is supported
 
 lighthouse:
   image:
@@ -45,7 +44,7 @@ lighthouse:
 
   debugLevel: info
   testnet: medalla
-  graffiti: Lighthouse Validator
+  graffiti: guildwarz-rocket-pool
 
 prysm:
   image:
@@ -57,4 +56,4 @@ prysm:
   tcpPort: 9001
   udpPort: 9001
   monitoringPort: 8081
-  graffiti: Prysm Validator
+  graffiti: guildwarz-rocket-pool
