@@ -38,7 +38,7 @@ ports:
 lighthouse:
   image:
     repository: sigp/lighthouse
-    tag: v0.2.13
+    tag: v0.3.0
     pullPolicy: IfNotPresent
 
   debugLevel: info
