@@ -14,6 +14,9 @@ eth1:
   infuraId: ${infura_id}
 
 eth2:
+  # pick one or the other and set the provider accordingly
+  lighthouse: true
+  prysm: false
   provider: http://lighthouse-beacon:5052
 
 storage:
@@ -32,7 +35,7 @@ ports:
 
 # Currently only Lighthouse + Infura is supported
 
-validator:
+lighthouse:
   image:
     repository: sigp/lighthouse
     tag: v0.2.13
@@ -41,3 +44,15 @@ validator:
   debugLevel: info
   testnet: medalla
   graffiti: Lighthouse Validator
+
+prysm:
+  image:
+    repository: gcr.io/prysmaticlabs/prysm/validator
+    tag: v1.0.0-alpha.28
+    pullPolicy: IfNotPresent
+
+  verbosity: info
+  tcpPort: 9001
+  udpPort: 9001
+  monitoringPort: 8081
+  graffiti: Prysm Validator
