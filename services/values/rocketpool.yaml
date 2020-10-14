@@ -18,7 +18,7 @@ eth2:
   lighthouse: false
   # provider: http://lighthouse-beacon:5052
   prysm: true
-  provider: http://prysm-beacon:4000
+  provider: prysm-beacon:4000
 
 storage:
   capacity: 1Gi
