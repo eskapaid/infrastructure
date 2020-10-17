@@ -11,3 +11,8 @@ variable "efs_id" {
   default     = "fs-changeme"
   description = "Used by AWS EFS Provisioner"
 }
+
+variable "cluster_name" {
+  default     = "eks_cluster"
+  description = "EKS Cluster Name"
+}

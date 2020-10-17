@@ -1,0 +1,19 @@
+nodeSelector:
+  "node.kubernetes.io/lifecycle": "spot"
+
+# Send notifications to a Slack webhook URL - replace with your own value and uncomment:
+# webhookURL: ${slack_url}
+
+# Set the cluster name to be reported in a Slack message
+clusterName: ${cluster_name}
+
+# Grace period for node draining
+gracePeriod: 120
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 80m
+    memory: 64Mi
