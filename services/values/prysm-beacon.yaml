@@ -3,8 +3,6 @@ image:
   tag: v1.0.0-alpha.28
   pullPolicy: IfNotPresent
 
-replicaCount: 1
-
 containerArgs:
   - --config-file
   - /data/config/prysm-beacon.yaml

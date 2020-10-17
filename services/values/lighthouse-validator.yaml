@@ -2,8 +2,6 @@ image:
   repository: sigp/lighthouse
   tag: v0.3.0
 
-replicas: 1
-
 container:
   command:
     - lighthouse

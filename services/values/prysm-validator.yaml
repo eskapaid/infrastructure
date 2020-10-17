@@ -2,8 +2,6 @@ image:
   repository: gcr.io/prysmaticlabs/prysm/validator
   tag: v1.0.0-alpha.28
 
-replicas: 1
-
 config:
   datadir: /data
   wallet-dir: /data/wallet
