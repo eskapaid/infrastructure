@@ -49,7 +49,7 @@ lighthouse:
 prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator
-    tag: v1.0.0-alpha.28
+    tag: v1.0.0-alpha.29
     pullPolicy: IfNotPresent
 
   verbosity: info

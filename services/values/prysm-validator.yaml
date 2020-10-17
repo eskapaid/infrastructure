@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/validator
-  tag: v1.0.0-alpha.28
+  tag: v1.0.0-alpha.29
 
 config:
   datadir: /data
@@ -44,7 +44,7 @@ slasher:
 
   image:
     repository: gcr.io/prysmaticlabs/prysm/slasher
-    tag: v1.0.0-alpha.28
+    tag: v1.0.0-alpha.29
 
   args:
     - --beacon-rpc-provider=prysm-beacon:4000
