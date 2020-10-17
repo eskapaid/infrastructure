@@ -7,8 +7,8 @@ nodeSelector:
 # Set the cluster name to be reported in a Slack message
 clusterName: ${cluster_name}
 
-# Grace period for node draining
-gracePeriod: 120
+# time in seconds given to each pod to terminate gracefully
+podTerminationGracePeriod: 120
 
 resources:
   limits:
