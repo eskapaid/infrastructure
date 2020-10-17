@@ -75,30 +75,30 @@ module "eks" {
     # }
   ]
 
-  worker_groups = [
-    {
-      name                 = "private-workers-a"
-      instance_type        = "t3a.large"
-      asg_desired_capacity = "1"
-      asg_max_size         = "1"
-      asg_min_size         = "1"
-      root_volume_size     = "20"
-      subnets              = [module.vpc.private_subnets[0]]
-      kubelet_extra_args   = "--node-labels=eskapa.id/subnet=private"
-    },
-    {
-      name                          = "public-workers-b"
-      instance_type                 = "t3a.large"
-      asg_desired_capacity          = "1"
-      asg_max_size                  = "1"
-      asg_min_size                  = "1"
-      root_volume_size              = "20"
-      public_ip                     = true
-      subnets                       = [module.vpc.public_subnets[1]] # EBS volumes are restricted to the AZ they were created in
-      additional_security_group_ids = [aws_security_group.eth_nodes.id]
-      kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
-    }
-  ]
+  # worker_groups = [
+  #   {
+  #     name                 = "private-workers-a"
+  #     instance_type        = "t3a.large"
+  #     asg_desired_capacity = "1"
+  #     asg_max_size         = "1"
+  #     asg_min_size         = "1"
+  #     root_volume_size     = "20"
+  #     subnets              = [module.vpc.private_subnets[0]]
+  #     kubelet_extra_args   = "--node-labels=eskapa.id/subnet=private"
+  #   },
+  #   {
+  #     name                          = "public-workers-b"
+  #     instance_type                 = "t3a.large"
+  #     asg_desired_capacity          = "1"
+  #     asg_max_size                  = "1"
+  #     asg_min_size                  = "1"
+  #     root_volume_size              = "20"
+  #     public_ip                     = true
+  #     subnets                       = [module.vpc.public_subnets[1]] # EBS volumes are restricted to the AZ they were created in
+  #     additional_security_group_ids = [aws_security_group.eth_nodes.id]
+  #     kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
+  #   }
+  # ]
 
   worker_groups_launch_template = [
     {
