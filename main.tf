@@ -1,10 +1,10 @@
 # Deploy various services to K8s
 module "services" {
-  source      = "./services"
-  environment = var.environment
-  region      = data.aws_region.current.name
-  efs_id      = aws_efs_file_system.rocketpool.id
-  # cluster_name = module.eks.cluster_id
+  source       = "./services"
+  environment  = var.environment
+  region       = data.aws_region.current.name
+  efs_id       = aws_efs_file_system.rocketpool.id
+  cluster_name = module.eks.cluster_id
   # oidc_issuer_url        = module.eks.cluster_oidc_issuer_url
   # grafana_admin_password = var.grafana_admin_password
   # papertrail_uri         = var.papertrail_uri
@@ -98,6 +98,24 @@ module "eks" {
       additional_security_group_ids = [aws_security_group.eth_nodes.id]
       kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public"
     }
+  ]
+
+  worker_groups_launch_template = [
+    {
+      name                          = "public-workers-spot"
+      override_instance_types       = ["m5.large", "m5a.large", "m5d.large", "m5ad.large", "m5n.large"]
+      asg_desired_capacity          = "2"
+      asg_max_size                  = "2"
+      asg_min_size                  = "2"
+      root_volume_size              = "20"
+      public_ip                     = true
+      subnets                       = [module.vpc.public_subnets[1]] # EBS volumes are restricted to the AZ they were created in
+      additional_security_group_ids = [aws_security_group.eth_nodes.id]
+      spot_instance_pools           = 10
+      spot_allocation_strategy      = "lowest-price" # "capacity-optimized"
+      kubelet_extra_args            = "--node-labels=eskapa.id/subnet=public,node.kubernetes.io/lifecycle=spot"
+      public_ip                     = true
+    },
   ]
 
   tags = {
