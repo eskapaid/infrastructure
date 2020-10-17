@@ -38,3 +38,31 @@ resources:
   limits:
     cpu: 200m
     memory: 512Mi
+
+slasher:
+  enabled: true
+
+  image:
+    repository: gcr.io/prysmaticlabs/prysm/slasher
+    tag: v1.0.0-alpha.28
+
+  args:
+    - --beacon-rpc-provider=prysm-beacon:4000
+    - --datadir=/data
+    - --rpc-host=0.0.0.0
+    - --monitoring-host=0.0.0.0
+
+  storage:
+    capacity: 3Gi
+
+  ports:
+    metrics: 8082
+    rpc: 4002
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
