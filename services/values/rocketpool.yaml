@@ -5,7 +5,7 @@ image:
 
 storageAddress: 0xbbCbc87447fE120E1Bc73dBd11bc4Dc1086FFa25
 
-# for now it has to be this as node service has this hardcoded
+# for now it has to be this as "node" service has this hardcoded
 datadir: /.rocketpool
 
 eth1:
@@ -35,7 +35,6 @@ ports:
   metrics: 5052
 
 # Currently only Infura as eth1 client is supported
-
 lighthouse:
   image:
     repository: sigp/lighthouse
