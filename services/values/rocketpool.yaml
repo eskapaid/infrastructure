@@ -1,7 +1,7 @@
 image:
   repository: rocketpool/smartnode
   tag: v0.0.3
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 storageAddress: 0xbbCbc87447fE120E1Bc73dBd11bc4Dc1086FFa25
 
@@ -39,7 +39,7 @@ lighthouse:
   image:
     repository: sigp/lighthouse
     tag: v0.3.0
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   debugLevel: info
   testnet: medalla
@@ -49,7 +49,7 @@ prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator
     tag: v1.0.0-alpha.29
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
 
   verbosity: info
   tcpPort: 9001

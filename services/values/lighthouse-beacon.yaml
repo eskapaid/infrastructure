@@ -1,7 +1,7 @@
 image:
   repository: sigp/lighthouse
   tag: v0.3.0
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 container:
   command:

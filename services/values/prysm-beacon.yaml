@@ -1,7 +1,7 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
   tag: v1.0.0-alpha.29
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 containerArgs:
   - --config-file
@@ -22,6 +22,7 @@ config:
   monitoring-host: 0.0.0.0
   log-file: /data/beacon.log
   verbosity: info
+  testnet: medalla
 
 storage:
   capacity: 20Gi
