@@ -6,7 +6,7 @@ image:
 container:
   command:
     - lighthouse
-    - beacon_node
+    - beacon
   args:
     - --datadir=/data
     - --debug-level=info
@@ -14,17 +14,14 @@ container:
     - --http
     - --http-address
     - "0.0.0.0"
-    - --ws
-    - --ws-address
-    - "0.0.0.0"
     - --metrics
     - --metrics-address
     - "0.0.0.0"
     - --eth1-endpoint=${eth1endpoint}
 
 ports:
+  http: 5052
   metrics: 5054
-  websocket: 5053
   discovery: 9000
 
 storage:
