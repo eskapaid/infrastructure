@@ -16,7 +16,7 @@ eth1:
 eth2:
   # pick one or the other and set the provider accordingly
   lighthouse: true
-  provider: lighthouse-beacon:5052
+  provider: http://lighthouse-beacon:5052
   prysm: false
   # provider: prysm-beacon:4000
 
