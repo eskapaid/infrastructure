@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
-  tag: v1.0.0-alpha.29
+  tag: v1.0.0-beta.0.rc
   pullPolicy: Always
 
 containerArgs:
@@ -9,6 +9,8 @@ containerArgs:
   - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
   - --dev
   - --http-web3provider=${eth1endpoint}
+  - --accept-terms-of-use
+  - --medalla
 
 #TODO add p2p-host-ip. How to get public address?
 config:
