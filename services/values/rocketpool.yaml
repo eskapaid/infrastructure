@@ -34,6 +34,12 @@ resources:
 ports:
   metrics: 5052
 
+proxy:
+  image:
+    repository: rocketpool/smartnode
+    tag: v0.0.3
+    pullPolicy: IfNotPresent
+
 # Currently only Infura as eth1 client is supported
 lighthouse:
   image:
