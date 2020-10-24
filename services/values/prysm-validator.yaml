@@ -2,6 +2,12 @@ image:
   repository: gcr.io/prysmaticlabs/prysm/validator
   tag: v1.0.0-beta.0.rc
 
+containerArgs:
+  - --config-file
+  - /data/config/prysm-validator.yaml
+  - --accept-terms-of-use
+  - --medalla
+
 config:
   datadir: /data
   wallet-dir: /data/wallet

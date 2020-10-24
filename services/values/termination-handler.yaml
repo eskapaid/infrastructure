@@ -1,8 +1,8 @@
 nodeSelector:
   "node.kubernetes.io/lifecycle": "spot"
 
-# Send notifications to a Slack webhook URL - replace with your own value and uncomment:
-# webhookURL: slack_url
+# Send notifications to a Slack webhook URL:
+webhookURL: ${slack_webhook}
 
 # Set the cluster name to be reported in a Slack message
 clusterName: ${cluster_name}

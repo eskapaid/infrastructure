@@ -10,8 +10,8 @@ variable "region" {
 
 variable "environment" {
   description = "AWS environment, eg. develop or prod"
-
 }
+
 variable "cluster_version" {
   description = "Kubernetes version to run on EKS"
   default     = "1.17"

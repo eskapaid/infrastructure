@@ -17,14 +17,13 @@ config:
   datadir: /data
   p2p-tcp-port: 13000
   p2p-udp-port: 12000
-  p2p-max-peers: 50
-  block-batch-limit: 512
   monitoring-port: 8080
   rpc-host: 0.0.0.0
   monitoring-host: 0.0.0.0
+  p2p-max-peers: 50
+  block-batch-limit: 512
   log-file: /data/beacon.log
   verbosity: info
-  testnet: medalla
 
 storage:
   capacity: 20Gi

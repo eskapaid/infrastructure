@@ -1,3 +1,7 @@
+data "aws_ssm_parameter" "slack_webhook" {
+  name = "/${var.environment}/slack-webhook"
+}
+
 resource "helm_release" "termination_handler" {
   name       = "aws-node-termination-handler"
   chart      = "aws-node-termination-handler"
@@ -7,9 +11,9 @@ resource "helm_release" "termination_handler" {
 
   values = [
     templatefile("${path.module}/values/termination-handler.yaml", {
-      environment  = var.environment
-      region       = var.region
-      cluster_name = var.cluster_name
+      environment   = var.environment
+      slack_webhook = data.aws_ssm_parameter.slack_webhook.value
+      cluster_name  = var.cluster_name
     })
   ]
 }
