@@ -44,7 +44,7 @@ proxy:
 lighthouse:
   image:
     repository: sigp/lighthouse
-    tag: v0.3.0
+    tag: v0.3.3
     pullPolicy: Always
 
   debugLevel: info
@@ -54,7 +54,7 @@ lighthouse:
 prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator
-    tag: v1.0.0-beta.0.rc
+    tag: v1.0.0-beta.1
     pullPolicy: Always
 
   verbosity: info
