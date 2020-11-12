@@ -35,6 +35,11 @@ provider "external" {
   version = "~> 1.2"
 }
 
+# allows the use of randomness within Terraform configurations
+provider "random" {
+  version = "~> 2.3"
+}
+
 # For K8s deployment resources
 provider "kubernetes" {
   version                = "~> 1.11"

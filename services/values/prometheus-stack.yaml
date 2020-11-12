@@ -1,0 +1,215 @@
+# For this chart default values see:
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+
+# global:
+#   imagePullSecrets:
+#    - name: "${dockerconfigsercretname}"
+
+# Not monitoring etcd, kube-scheduler, or kube-controller-manager because it is managed by EKS
+defaultRules:
+  rules:
+    etcd: false
+    kubeScheduler: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+
+  ## How long to retain metrics for
+  retention: 90d
+
+  # List of ServiceMonitor objects to create
+  # additionalServiceMonitors:
+
+    # Scrape Consul Exporter
+    # - name: consul-exporter
+    #   additionalLabels:
+    #     prometheus: kube-prometheus
+    #     release: prometheus-operator
+    #   selector:
+    #     matchLabels:
+    #       app: prometheus-consul-exporter
+    #   endpoints:
+    #     - interval: 5s
+    #       port: http
+    #   namespaceSelector:
+    #     any: true
+
+  prometheusSpec:
+
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512M
+      limits:
+        cpu: 1500m
+        memory: 6144M
+
+    # Make sure the pod is scheduled on a node with the 'monitoring' label
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #       - matchExpressions:
+    #         - key: node-group
+    #           operator: In
+    #           values:
+    #           - monitoring
+
+    # Number of Prometheus replicas (with its own volume)
+    replicas: 1
+    # "hard" means that the scheduler is *required* to not schedule two replica pods in the same toplogy key (below)
+    podAntiAffinity: hard
+    # What label to use when deciding on anti-affinity
+    podAntiAffinityTopologyKey: failure-domain.beta.kubernetes.io/zone
+
+    ## External URL at which Prometheus will be reachable. This will be used in alert notifications
+    # externalUrl: "http://${url}"
+
+
+    # If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
+    # prometheus resource to be created with selectors based on values in the helm deployment,
+    # which will also match the servicemonitors created
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+    additionalScrapeConfigs:
+
+      # Scrape EC2 metadata for node-exporter running on ECS nodes
+      # - job_name: ecs-node-exporter
+      #   ec2_sd_configs:
+      #     - region: "${region}"
+      #       port: 9100
+      #       filters:
+      #         - name: tag:Environment
+      #           values: ["${branch}"]
+      #   relabel_configs:
+      #     # Keep instance names starting with ECS-, drop the rest
+      #     - source_labels: [__meta_ec2_tag_Name]
+      #       regex: "ECS-.+"
+      #       action: keep
+      #     # Populate metrics labels. Instances are tagged at deploy with these tags
+      #     - source_labels: [__meta_ec2_tag_Name]
+      #       target_label: name
+      #       action: replace
+
+    ## Prometheus StorageSpec for persistent data
+    ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/storage.md
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+
+## Configuration for alertmanager
+## ref: https://prometheus.io/docs/alerting/alertmanager/
+alertmanager:
+
+  ## Alertmanager configuration directives
+  ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
+  ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['cluster', 'alertname', 'service']
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 1h
+      receiver: 'null'
+      routes:
+      - match:
+          alertname: Watchdog
+        receiver: 'null'
+        group_interval: 1m
+        repeat_interval: 1m
+
+      - match:
+          severity: critical
+        receiver: 'null'
+        continue: true
+
+      - match_re:
+          alertname: ^(TargetDown)$
+        receiver: 'null'
+        continue: false
+
+      - match_re:
+          severity: info|warning
+        receiver: 'null' # Maybe make this Slack "no-action" channel in the future instead
+        continue: true
+
+    # Inhibition rules allow to mute a set of alerts given that another alert is firing.
+    # We use this to mute any warning-level notifications if the same alert is already critical.
+    inhibit_rules:
+    - source_match:
+        severity: 'critical'
+      target_match:
+        severity: 'warning'
+      # Apply inhibition if the alertname is the same.
+      equal: ['alertname', 'cluster', 'service']
+
+    receivers:
+    - name: 'null'
+    # - name: 'slack'
+    #   slack_configs:
+    #     - api_url: "slack-integration-url"
+
+
+  alertmanagerSpec:
+
+    # Make sure the pod is scheduled on a node with the 'monitoring' label
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #       - matchExpressions:
+    #         - key: node-group
+    #           operator: In
+    #           values:
+    #           - monitoring
+    ## Settings affecting alertmanagerSpec
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#alertmanagerspec
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 1Gi
+
+prometheus-node-exporter:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 200M
+    requests:
+      cpu: 10m
+      memory: 20M
+
+# https://github.com/helm/charts/blob/master/stable/grafana/values.yaml
+grafana:
+  enabled: true
+
+  # serviceAccount:
+  #   create: true
+  #   annotations:
+  #     eks.amazonaws.com/role-arn: "${grafana_role_arn}"
+
+  # Make sure the pod is scheduled on a node with the 'monitoring' label
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: node-group
+  #           operator: In
+  #           values:
+  #           - monitoring
+
+  adminPassword: ${grafana_admin_password}
