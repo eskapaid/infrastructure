@@ -1,10 +1,6 @@
 # For this chart default values see:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
 
-# global:
-#   imagePullSecrets:
-#    - name: "${dockerconfigsercretname}"
-
 # Not monitoring etcd, kube-scheduler, or kube-controller-manager because it is managed by EKS
 defaultRules:
   rules:
@@ -66,33 +62,13 @@ kubeScheduler:
     podAntiAffinityTopologyKey: failure-domain.beta.kubernetes.io/zone
 
     ## External URL at which Prometheus will be reachable. This will be used in alert notifications
-    # externalUrl: "http://${url}"
+    # externalUrl: "http://"
 
 
     # If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
     # prometheus resource to be created with selectors based on values in the helm deployment,
     # which will also match the servicemonitors created
     serviceMonitorSelectorNilUsesHelmValues: false
-
-    additionalScrapeConfigs:
-
-      # Scrape EC2 metadata for node-exporter running on ECS nodes
-      # - job_name: ecs-node-exporter
-      #   ec2_sd_configs:
-      #     - region: "${region}"
-      #       port: 9100
-      #       filters:
-      #         - name: tag:Environment
-      #           values: ["${branch}"]
-      #   relabel_configs:
-      #     # Keep instance names starting with ECS-, drop the rest
-      #     - source_labels: [__meta_ec2_tag_Name]
-      #       regex: "ECS-.+"
-      #       action: keep
-      #     # Populate metrics labels. Instances are tagged at deploy with these tags
-      #     - source_labels: [__meta_ec2_tag_Name]
-      #       target_label: name
-      #       action: replace
 
     ## Prometheus StorageSpec for persistent data
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/storage.md
@@ -195,11 +171,6 @@ prometheus-node-exporter:
 # https://github.com/helm/charts/blob/master/stable/grafana/values.yaml
 grafana:
   enabled: true
-
-  # serviceAccount:
-  #   create: true
-  #   annotations:
-  #     eks.amazonaws.com/role-arn: "${grafana_role_arn}"
 
   # Make sure the pod is scheduled on a node with the 'monitoring' label
   # affinity:
