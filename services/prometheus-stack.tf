@@ -9,8 +9,8 @@ resource "aws_ssm_parameter" "grafana_password" {
 }
 
 resource "helm_release" "prometheus_stack" {
-  name       = "prometheus-stack"
-  chart      = "prometheus-community/kube-prometheus-stack"
+  name       = "kube-prometheus-stack"
+  chart      = "kube-prometheus-stack"
   repository = "https://prometheus-community.github.io/helm-charts"
   namespace  = kubernetes_namespace.monitor.metadata.0.name
 
