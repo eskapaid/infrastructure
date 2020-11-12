@@ -60,6 +60,7 @@ slasher:
     - --datadir=/data
     - --rpc-host=0.0.0.0
     - --monitoring-host=0.0.0.0
+    - --accept-terms-of-use
 
   storage:
     capacity: 3Gi
