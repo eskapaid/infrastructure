@@ -14,7 +14,7 @@ kubeScheduler:
   enabled: false
 
   ## How long to retain metrics for
-  retention: 90d
+  retention: 91d
 
   # List of ServiceMonitor objects to create
   # additionalServiceMonitors:
