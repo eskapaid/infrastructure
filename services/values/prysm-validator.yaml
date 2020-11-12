@@ -45,6 +45,9 @@ resources:
     cpu: 200m
     memory: 512Mi
 
+servicemonitor:
+  enabled: true
+
 slasher:
   enabled: true
 

@@ -45,3 +45,6 @@ affinity:
               operator: In
               values:
                 - public
+
+servicemonitor:
+  enabled: true
