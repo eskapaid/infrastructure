@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
-  tag: v1.0.0-beta.1
+  tag: v1.0.0-beta.2
   pullPolicy: Always
 
 containerArgs:
