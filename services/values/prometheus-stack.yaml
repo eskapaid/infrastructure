@@ -70,6 +70,15 @@ kubeScheduler:
     # which will also match the servicemonitors created
     serviceMonitorSelectorNilUsesHelmValues: false
 
+    ## ServiceMonitors to be selected for target discovery.
+    ## If {}, select all ServiceMonitors
+    ##
+    serviceMonitorSelector: {}
+    ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
+    # serviceMonitorSelector:
+    #   matchLabels:
+    #     prometheus: somelabel
+
     ## Prometheus StorageSpec for persistent data
     ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/user-guides/storage.md
     storageSpec:
