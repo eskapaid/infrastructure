@@ -34,6 +34,11 @@ resources:
 ports:
   metrics: 5052
 
+# different datadir for CLI to run from api container
+# maybe run CLI from its own container in the future - need to build one
+api:
+  datadir: /root/.rocketpool
+
 proxy:
   image:
     repository: rocketpool/smartnode
