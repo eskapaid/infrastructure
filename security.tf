@@ -35,6 +35,14 @@ resource "aws_security_group" "eth_nodes" {
     description = "Lighthouse TCP"
   }
 
+  ingress {
+    protocol    = "tcp"
+    from_port   = 30303
+    to_port     = 30303
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Geth Discovery"
+  }
+
   tags = {
     Name        = "eth-nodes"
     Environment = var.environment
