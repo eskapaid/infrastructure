@@ -1,9 +1,9 @@
 data "aws_ssm_parameter" "prysm_keystore" {
-  name = "/${var.env}/prysm/keystore"
+  name = "/${var.environment}/prysm/keystore"
 }
 
 data "aws_ssm_parameter" "prysm_password" {
-  name = "/${var.env}/prysm/password"
+  name = "/${var.environment}/prysm/password"
 }
 
 resource "kubernetes_secret" "prysm_keystore" {
