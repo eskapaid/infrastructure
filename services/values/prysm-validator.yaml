@@ -1,12 +1,12 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/validator
-  tag: v1.0.0-beta.2
+  tag: v1.0.0-beta.3
 
 containerArgs:
   - --config-file
   - /data/config/prysm-validator.yaml
   - --accept-terms-of-use
-  - --medalla
+  - --pyrmont
 
 config:
   datadir: /data
@@ -16,7 +16,6 @@ config:
   monitoring-host: 0.0.0.0
   monitoring-port: 8081
   beacon-rpc-provider: prysm-beacon:4000
-  log-file: /data/validator.log
   verbosity: info
   graffiti: poap2+qxp/4v6Qf8wL84AXIINsq45egA
 
@@ -24,14 +23,14 @@ config:
 # initContainer will copy these to /data/wallet to be available
 # in the main container
 secretMounts:
-  - name: keymanageropts
-    secretName: keymanageropts
-    mountPath: /data/mount/direct
+  # - name: keymanageropts
+  #   secretName: keymanageropts
+  #   mountPath: /data/mount/direct
   - name: keystore
-    secretName: keystore
+    secretName: prysm-keystore
     mountPath: /data/mount/direct/accounts
   - name: password
-    secretName: password
+    secretName: prysm-password
     mountPath: /data/mount/password
 
 storage:
@@ -54,7 +53,7 @@ slasher:
 
   image:
     repository: gcr.io/prysmaticlabs/prysm/slasher
-    tag: v1.0.0-beta.2
+    tag: v1.0.0-beta.3
 
   args:
     - --beacon-rpc-provider=prysm-beacon:4000

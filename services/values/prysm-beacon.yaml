@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/beacon-chain
-  tag: v1.0.0-beta.2
+  tag: v1.0.0-beta.3
   pullPolicy: Always
 
 containerArgs:
@@ -10,7 +10,8 @@ containerArgs:
   - --dev
   - --http-web3provider=${eth1endpoint}
   - --accept-terms-of-use
-  - --medalla
+  - --pyrmont
+  - --force-clear-db
 
 #TODO add p2p-host-ip. How to get public address?
 config:
@@ -22,7 +23,6 @@ config:
   monitoring-host: 0.0.0.0
   p2p-max-peers: 50
   block-batch-limit: 512
-  log-file: /data/beacon.log
   verbosity: info
 
 storage:
