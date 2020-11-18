@@ -8,10 +8,10 @@ containerArgs:
   - /data/config/prysm-beacon.yaml
   - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
   - --dev
-  - --http-web3provider=${eth1endpoint}
+  # - --http-web3provider=${eth1endpoint} # leave Infura as a backup option
+  - --http-web3provider=http://geth-goerli:8545/
   - --accept-terms-of-use
   - --pyrmont
-  - --force-clear-db
 
 #TODO add p2p-host-ip. How to get public address?
 config:

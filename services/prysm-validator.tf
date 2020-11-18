@@ -6,6 +6,10 @@ data "aws_ssm_parameter" "prysm_password" {
   name = "/${var.environment}/prysm/password"
 }
 
+data "aws_ssm_parameter" "prysm_keymanager" {
+  name = "/${var.environment}/prysm/keymanager"
+}
+
 resource "kubernetes_secret" "prysm_keystore" {
   metadata {
     name      = "prysm-keystore"
@@ -25,6 +29,17 @@ resource "kubernetes_secret" "prysm_password" {
 
   data = {
     "password.txt" = data.aws_ssm_parameter.prysm_password.value
+  }
+}
+
+resource "kubernetes_secret" "prysm_keymanager" {
+  metadata {
+    name      = "prysm-keymanager"
+    namespace = kubernetes_namespace.services.metadata.0.name
+  }
+
+  data = {
+    "keymanageropts.json" = data.aws_ssm_parameter.prysm_keymanager.value
   }
 }
 
