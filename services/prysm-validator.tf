@@ -13,7 +13,7 @@ resource "kubernetes_secret" "prysm_keystore" {
   }
 
   data = {
-    all-accounts.keystore.json = data.aws_ssm_parameter.prysm_keystore.value
+    "all-accounts.keystore.json" = data.aws_ssm_parameter.prysm_keystore.value
   }
 }
 
@@ -24,7 +24,7 @@ resource "kubernetes_secret" "prysm_password" {
   }
 
   data = {
-    password.txt = data.aws_ssm_parameter.prysm_password.value
+    "password.txt" = data.aws_ssm_parameter.prysm_password.value
   }
 }
 
