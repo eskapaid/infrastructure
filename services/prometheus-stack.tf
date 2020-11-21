@@ -8,6 +8,20 @@ resource "aws_ssm_parameter" "grafana_password" {
   value = random_id.grafana_password.hex
 }
 
+# Grafana certificate. Can't use cert-manager cert with ALB Controller atm
+data "aws_route53_zone" "current" {
+  name = "${var.environment}.${var.domain}."
+}
+
+module "acm" {
+  source  = "terraform-aws-modules/acm/aws"
+  version = "~> v2.0"
+
+  create_certificate = true
+  domain_name        = "grafana.${var.environment}.${var.domain}."
+  zone_id            = data.aws_route53_zone.current.id
+}
+
 resource "helm_release" "prometheus_stack" {
   name       = "kube-prometheus-stack"
   chart      = "kube-prometheus-stack"
@@ -16,9 +30,10 @@ resource "helm_release" "prometheus_stack" {
 
   values = [
     templatefile("${path.module}/values/prometheus-stack.yaml", {
-      environment            = var.environment
-      domain                 = var.domain
-      grafana_admin_password = random_id.grafana_password.hex
+      environment             = var.environment
+      domain                  = var.domain
+      grafana_admin_password  = random_id.grafana_password.hex
+      grafana_certificate_arn = module.acm.this_acm_certificate_arn
     })
   ]
 }
