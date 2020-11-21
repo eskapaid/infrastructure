@@ -1,7 +1,7 @@
 resource "helm_release" "cluster_certs" {
   name      = "cluster-certs"
   chart     = "${path.module}/charts/cluster-certs"
-  namespace = kubernetes_namespace.services.metadata.0.name
+  namespace = "default"
 
   values = [
     templatefile("${path.module}/values/cluster-certs.yaml", {

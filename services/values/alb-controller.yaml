@@ -1,0 +1,9 @@
+clusterName: ${cluster_name}
+autoDiscoverAwsRegion: true
+autoDiscoverAwsVpcID: true
+
+rbac:
+  create: false
+  serviceAccount:
+    create: false
+    name: ${service_account}
