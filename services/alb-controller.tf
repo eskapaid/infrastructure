@@ -39,7 +39,7 @@ resource "kubernetes_cluster_role" "alb_controller" {
 
   rule {
     api_groups = [""]
-    resources  = ["endpoints", "namespaces", "nodes", "pods", "secrets", "configmaps"]
+    resources  = ["endpoints", "namespaces", "nodes", "pods", "secrets"]
     verbs      = ["get", "list", "watch"]
   }
 
@@ -57,7 +57,7 @@ resource "kubernetes_cluster_role" "alb_controller" {
 
   rule {
     api_groups = ["", "extensions", "networking.k8s.io"]
-    resources  = ["services"]
+    resources  = ["services", "ingresses", "configmaps"]
     verbs      = ["get", "list", "patch", "update", "watch"]
   }
 
