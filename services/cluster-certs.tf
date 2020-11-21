@@ -7,6 +7,7 @@ resource "helm_release" "cluster_certs" {
     templatefile("${path.module}/values/cluster-certs.yaml", {
       region      = var.region
       environment = var.environment
+      domain      = var.domain
     })
   ]
 

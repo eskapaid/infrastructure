@@ -15,7 +15,7 @@ registry: txt
 ## Limit possible target zones by domain suffixes (optional)
 ##
 domainFilters:
-  - ${environment}.eskapaid.dev
+  - ${environment}.${domain}
 
 resources:
   limits:

@@ -6,8 +6,9 @@ resource "helm_release" "external_dns" {
 
   values = [
     templatefile("${path.module}/values/external-dns.yaml", {
-      role_arn    = module.external_dns_assumable_role.this_iam_role_arn,
-      environment = var.environment,
+      role_arn    = module.external_dns_assumable_role.this_iam_role_arn
+      environment = var.environment
+      domain      = var.domain
       region      = var.region
     })
   ]
