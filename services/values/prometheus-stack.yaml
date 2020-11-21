@@ -198,8 +198,12 @@ grafana:
     enabled: true
     hosts:
       - grafana.${environment}.${domain}
+    path: /grafana/?(.*)
     annotations:
       cert-manager.io/cluster-issuer: cluster-dns-issuer
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing 
+      alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/group.name: ${environment}-alb-ingress
     # TLS configuration for grafana Ingress
     # The secret specified will be created by cert-manager
@@ -211,4 +215,4 @@ grafana:
 
   # Extra environment variables that will be passed onto deployment pods
   env:
-    GF_SERVER_ROOT_URL: https://grafana.${environment}.${domain}/
+    GF_SERVER_ROOT_URL: https://grafana.${environment}.${domain}/grafana
