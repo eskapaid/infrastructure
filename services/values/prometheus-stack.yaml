@@ -205,13 +205,12 @@ grafana:
       alb.ingress.kubernetes.io/scheme: internet-facing 
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/group.name: ${environment}-alb-ingress
-    # TLS configuration for grafana Ingress
     # The secret specified will be created by cert-manager
     # and store the created certificate there
     tls:
     - secretName: grafana-cert-key
       hosts:
-      - grafana.${environment}.${domain}
+        - grafana.${environment}.${domain}
 
   # Extra environment variables that will be passed onto deployment pods
   env:
