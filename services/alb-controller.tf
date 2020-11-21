@@ -5,7 +5,7 @@ resource "helm_release" "alb_controller" {
   namespace  = "default"
 
   values = [
-    templatefile("${path.module}/chart-values/alb-controller.yaml", {
+    templatefile("${path.module}/values/alb-controller.yaml", {
       cluster_name    = var.cluster_name
       service_account = kubernetes_service_account.alb_controller.metadata[0].name
     })
