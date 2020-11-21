@@ -38,21 +38,33 @@ resource "kubernetes_cluster_role" "alb_controller" {
   }
 
   rule {
-    api_groups = ["", "extensions"]
-    resources  = ["configmaps", "endpoints", "events", "ingresses", "ingresses/status", "services"]
-    verbs      = ["create", "get", "list", "update", "watch", "patch"]
+    api_groups = [""]
+    resources  = ["endpoints", "namespaces", "nodes", "pods", "secrets"]
+    verbs      = ["get", "list", "watch"]
   }
 
   rule {
-    api_groups = ["", "extensions"]
-    resources  = ["nodes", "pods", "secrets", "services", "namespaces"]
-    verbs      = ["get", "list", "watch"]
+    api_groups = [""]
+    resources  = ["events"]
+    verbs      = ["create", "patch"]
+  }
+
+  rule {
+    api_groups = ["", "extensions", "elbv2.k8s.aws", "networking.k8s.io", ]
+    resources  = ["pods/status", "services", "ingresses/status", "targetgroupbindings/status"]
+    verbs      = ["patch", "update"]
+  }
+
+  rule {
+    api_groups = ["", "extensions", "networking.k8s.io"]
+    resources  = ["services"]
+    verbs      = ["get", "list", "patch", "update", "watch"]
   }
 
   rule {
     api_groups = ["elbv2.k8s.aws"]
     resources  = ["targetgroupbindings"]
-    verbs      = ["list"]
+    verbs      = ["create", "delete", "get", "list", "patch", "update", "watch"]
   }
 }
 
