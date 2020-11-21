@@ -68,7 +68,7 @@ resource "kubernetes_cluster_role_binding" "alb_controller" {
   subject {
     kind      = "ServiceAccount"
     name      = kubernetes_service_account.alb_controller.metadata[0].name
-    namespace = kubernetes_service_account.alb_controller.metadata[0].namespace
+    namespace = "default"
   }
 
   depends_on = [kubernetes_cluster_role.alb_controller]
