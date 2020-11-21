@@ -3,6 +3,7 @@ rbac:
   serviceAccountName: external-dns
   serviceAccountAnnotations:
     eks.amazonaws.com/role-arn: ${role_arn}
+    foo: bar
 
 ## Modify how DNS records are sychronized between sources and providers (options: sync, upsert-only)
 ## would prevent ExternalDNS from deleting any records, omit to enable full synchronization
