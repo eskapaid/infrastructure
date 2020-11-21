@@ -17,9 +17,14 @@ module "acm" {
   source  = "terraform-aws-modules/acm/aws"
   version = "~> v2.0"
 
-  create_certificate = true
-  domain_name        = "grafana.${var.environment}.${var.domain}."
-  zone_id            = data.aws_route53_zone.current.id
+  domain_name = "grafana.${var.environment}.${var.domain}"
+  subject_alternative_names = [
+    "grafana.${var.environment}.${var.domain}",
+  ]
+  zone_id              = data.aws_route53_zone.current.id
+  create_certificate   = true
+  validate_certificate = true
+  wait_for_validation  = true
 }
 
 resource "helm_release" "prometheus_stack" {
