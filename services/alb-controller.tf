@@ -5,14 +5,14 @@ resource "helm_release" "alb_controller" {
   namespace  = "default"
 
   values = [
-    templatefile("${path.module}/chart-values/alb-ingress.yaml", {
+    templatefile("${path.module}/chart-values/alb-controller.yaml", {
       cluster_name    = var.cluster_name
       service_account = kubernetes_service_account.alb_controller.metadata[0].name
     })
   ]
 }
 
-# Create K8s service account and associate the IAM role we created in iam-ingress.tf
+# Create K8s service account and associate the IAM role we created in alb-controller-iam.tf
 resource "kubernetes_service_account" "alb_controller" {
   automount_service_account_token = true
   metadata {
