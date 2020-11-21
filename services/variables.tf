@@ -16,3 +16,7 @@ variable "cluster_name" {
   default     = "eks_cluster"
   description = "EKS Cluster Name"
 }
+
+variable "oidc_issuer_url" {
+  description = "The URL on the EKS cluster OIDC Issuer"
+}

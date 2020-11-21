@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v0.3.3
+  tag: v0.3.5
   pullPolicy: Always
 
 container:
@@ -29,10 +29,10 @@ storage:
 
 resources:
   requests:
-    cpu: 250m
+    cpu: 400m
     memory: 2Gi
   limits:
-    cpu: 500m
+    cpu: 900m
     memory: 3Gi
 
 affinity:

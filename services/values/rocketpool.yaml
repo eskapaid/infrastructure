@@ -59,7 +59,7 @@ proxy:
 lighthouse:
   image:
     repository: sigp/lighthouse
-    tag: v0.3.3
+    tag: v0.3.5
     pullPolicy: Always
 
   debugLevel: info

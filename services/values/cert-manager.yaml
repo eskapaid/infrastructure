@@ -1,0 +1,26 @@
+global:
+  rbac:
+    create: true
+
+# If this chart is uninstalled the defined custom resources will be removed!
+installCRDs: true
+
+serviceAccount:
+  create: true
+  name: cert-manager
+  annotations:
+    eks.amazonaws.com/role-arn: ${role_arn}
+
+# Allow access to the mounted AWS token from container
+securityContext:
+  fsGroup: 1001
+  runAsUser: 1001
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 80m
+    memory: 64Mi
+

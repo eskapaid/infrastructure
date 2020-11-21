@@ -1,13 +1,11 @@
 # Deploy various services to K8s
 module "services" {
-  source       = "./services"
-  environment  = var.environment
-  region       = data.aws_region.current.name
-  efs_id       = aws_efs_file_system.rocketpool.id
-  cluster_name = module.eks.cluster_id
-  # oidc_issuer_url        = module.eks.cluster_oidc_issuer_url
-  # grafana_admin_password = var.grafana_admin_password
-  # papertrail_uri         = var.papertrail_uri
+  source          = "./services"
+  environment     = var.environment
+  region          = data.aws_region.current.name
+  efs_id          = aws_efs_file_system.rocketpool.id
+  cluster_name    = module.eks.cluster_id
+  oidc_issuer_url = module.eks.cluster_oidc_issuer_url
 }
 
 module "vpc" {
@@ -44,7 +42,7 @@ module "eks" {
   subnets                         = concat(module.vpc.public_subnets, module.vpc.private_subnets)
   vpc_id                          = module.vpc.vpc_id
   worker_ami_name_filter          = "amazon-eks-node-1.17-v20200723" # https://github.com/awslabs/amazon-eks-ami/releases
-  enable_irsa                     = false
+  enable_irsa                     = true
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
   cluster_enabled_log_types       = ["api", "audit", "authenticator"]

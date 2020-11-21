@@ -1,0 +1,4 @@
+region: ${region}
+environment: ${env}
+email: admin@eskapa.id
+domain: eskapa.id

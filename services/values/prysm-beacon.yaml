@@ -30,11 +30,11 @@ storage:
 
 resources:
   requests:
-    cpu: 250m
-    memory: 2Gi
+    cpu: 400m
+    memory: 3Gi
   limits:
-    cpu: 500m
-    memory: 4Gi
+    cpu: 900m
+    memory: 5Gi
 
 affinity:
   nodeAffinity:

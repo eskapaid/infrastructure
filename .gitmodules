@@ -9,3 +9,6 @@
 [submodule "services/charts/rocketpool"]
 	path = services/charts/rocketpool
 	url = https://github.com/eskapaid/rocketpool-helm
+[submodule "services/charts/cluster-certs"]
+	path = services/charts/cluster-certs
+	url = https://github.com/eskapaid/cluster-certs-helm
