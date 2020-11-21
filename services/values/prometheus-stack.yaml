@@ -198,7 +198,7 @@ grafana:
     enabled: true
     hosts:
       - grafana.${environment}.${domain}
-    path: /grafana/?(.*)
+    path: /grafana
     annotations:
       cert-manager.io/cluster-issuer: cluster-dns-issuer
       kubernetes.io/ingress.class: alb
