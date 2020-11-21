@@ -48,6 +48,12 @@ resource "kubernetes_cluster_role" "alb_controller" {
     resources  = ["nodes", "pods", "secrets", "services", "namespaces"]
     verbs      = ["get", "list", "watch"]
   }
+
+  rule {
+    api_groups = ["elbv2.k8s.aws"]
+    resources  = ["targetgroupbindings"]
+    verbs      = ["list"]
+  }
 }
 
 # Create a Cluster Role and Cluster Role Binding that grant requisite permissions to the Service Account
