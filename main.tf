@@ -1,6 +1,7 @@
 # Deploy various services to K8s
 module "services" {
   source          = "./services"
+  domain          = "eskapaid.dev"
   environment     = var.environment
   region          = data.aws_region.current.name
   efs_id          = aws_efs_file_system.rocketpool.id

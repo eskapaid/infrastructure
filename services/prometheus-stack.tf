@@ -17,6 +17,7 @@ resource "helm_release" "prometheus_stack" {
   values = [
     templatefile("${path.module}/values/prometheus-stack.yaml", {
       environment            = var.environment
+      domain                 = var.domain
       grafana_admin_password = random_id.grafana_password.hex
     })
   ]
