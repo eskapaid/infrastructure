@@ -42,7 +42,8 @@ data "aws_iam_policy_document" "external_dns" {
   statement {
     sid    = "ExtDNSRoute53ListZones"
     effect = "Allow"
-    actions = ["route53:ListHostedZones",
+    actions = [
+      "route53:ListHostedZones",
       "route53:ListResourceRecordSets"
     ]
     resources = ["*"]

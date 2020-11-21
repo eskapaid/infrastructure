@@ -1,6 +1,5 @@
 rbac:
   create: true
-  serviceAccountCreate: true
   serviceAccountName: external-dns
   serviceAccountAnnotations:
     eks.amazonaws.com/role-arn: ${role_arn}
