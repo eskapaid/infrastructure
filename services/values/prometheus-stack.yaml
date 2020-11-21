@@ -196,7 +196,7 @@ grafana:
 
   grafana.ini:
     server:
-      root_url: https://grafana.${environment}.${domain}
+      root_url: https://grafana.${environment}.${domain}/
 
   ingress:
     enabled: true
@@ -221,4 +221,4 @@ grafana:
 
   # Extra environment variables that will be passed onto deployment pods
   env:
-    GF_SERVER_ROOT_URL: https://grafana.${environment}.${domain}/grafana
+    GF_SERVER_ROOT_URL: https://grafana.${environment}.${domain}/
