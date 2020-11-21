@@ -1,4 +1,4 @@
 region: ${region}
 environment: ${environment}
 email: admin@eskapa.id
-domain: eskapa.id
+domain: eskapaid.dev
