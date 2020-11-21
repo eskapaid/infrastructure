@@ -17,7 +17,7 @@ resource "kubernetes_service_account" "alb_controller" {
   automount_service_account_token = true
   metadata {
     name      = "aws-load-balancer-controller"
-    namespace = "kube-system"
+    namespace = "default"
     labels = {
       "app.kubernetes.io/name"       = "aws-load-balancer-controller"
       "app.kubernetes.io/managed-by" = "terraform"
