@@ -200,6 +200,7 @@ grafana:
       - grafana.${environment}.${domain}
     annotations:
       cert-manager.io/cluster-issuer: cluster-dns-issuer
+      alb.ingress.kubernetes.io/group.name: ${environment}-alb-ingress
     # TLS configuration for grafana Ingress
     # The secret specified will be created by cert-manager
     # and store the created certificate there
