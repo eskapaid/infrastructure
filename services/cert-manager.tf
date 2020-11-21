@@ -6,7 +6,7 @@ resource "helm_release" "cert_manager" {
   version    = "0.15.0"
 
   values = [
-    templatefile("${path.module}/chart-values/cert-manager.yaml", {
+    templatefile("${path.module}/values/cert-manager.yaml", {
       role_arn = module.iam_assumable_role_admin.this_iam_role_arn
     })
   ]
