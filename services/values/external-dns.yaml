@@ -1,0 +1,29 @@
+rbac:
+  create: true
+  serviceAccountCreate: true
+  serviceAccountName: external-dns
+  serviceAccountAnnotations:
+    eks.amazonaws.com/role-arn: ${role_arn}
+
+## Modify how DNS records are sychronized between sources and providers (options: sync, upsert-only)
+## would prevent ExternalDNS from deleting any records, omit to enable full synchronization
+policy: upsert-only
+## Registry Type. Available types are: txt, noop
+## ref: https://github.com/kubernetes-sigs/external-dns/blob/master/docs/proposal/registry.md
+##
+registry: txt
+## Limit possible target zones by domain suffixes (optional)
+##
+domainFilters:
+  - ${environment}.eskapaid.dev
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+aws:
+  region: ${region}
