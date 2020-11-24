@@ -59,18 +59,17 @@ proxy:
 lighthouse:
   image:
     repository: sigp/lighthouse
-    tag: v0.3.5
+    tag: v1.0.0
     pullPolicy: Always
 
   debugLevel: info
-  # TODO change to "network" with LH 1.0.0
-  testnet: pyrmont
+  network: pyrmont
   graffiti: eskapaid.dev
 
 prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator
-    tag: v1.0.0-beta.3
+    tag: v1.0.0
     pullPolicy: Always
 
   verbosity: info

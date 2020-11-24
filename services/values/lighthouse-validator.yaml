@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v0.3.5
+  tag: v1.0.0
 
 container:
   command:
@@ -12,7 +12,7 @@ container:
     - --debug-level
     - info
     - --disable-auto-discover
-    - --testnet
+    - --network
     - pyrmont
     - --beacon-node
     - http://lighthouse-beacon:5052

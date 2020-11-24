@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v0.3.5
+  tag: v1.0.0
   pullPolicy: Always
 
 container:
@@ -10,7 +10,7 @@ container:
   args:
     - --datadir=/data
     - --debug-level=info
-    - --testnet=pyrmont
+    - --network=pyrmont
     - --http
     - --http-address
     - "0.0.0.0"
