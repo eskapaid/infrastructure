@@ -13,11 +13,11 @@ container:
     - info
     - --disable-auto-discover
     - --testnet
-    - medalla
+    - pyrmont
     - --beacon-node
     - http://lighthouse-beacon:5052
-    - --graffiti
-    - 'poap2+qxp/4v6Qf8wL84AXIINsq45egB'
+    # - --graffiti
+    # - 'eskapa.id'
     - --init-slashing-protection
     - --delete-lockfiles
 

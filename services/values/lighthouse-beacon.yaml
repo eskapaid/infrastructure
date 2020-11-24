@@ -10,7 +10,7 @@ container:
   args:
     - --datadir=/data
     - --debug-level=info
-    - --testnet=medalla
+    - --testnet=pyrmont
     - --http
     - --http-address
     - "0.0.0.0"

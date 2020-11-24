@@ -194,15 +194,11 @@ grafana:
 
   adminPassword: ${grafana_admin_password}
 
-  grafana.ini:
-    server:
-      root_url: https://grafana.${environment}.${domain}/
-
   ingress:
     enabled: true
     hosts:
       - grafana.${environment}.${domain}
-    path: /
+    path: /*
     annotations:
       kubernetes.io/ingress.class: alb
       alb.ingress.kubernetes.io/certificate-arn: ${grafana_certificate_arn}
@@ -211,6 +207,7 @@ grafana:
       alb.ingress.kubernetes.io/scheme: internet-facing 
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/group.name: ${environment}-alb-ingress
+      alb.ingress.kubernetes.io/healthcheck-path: /api/health
       # cert-manager.io/cluster-issuer: cluster-dns-issuer # creating the certificate with Terraform for now
     # The secret specified will be created by cert-manager
     # and store the created certificate there
