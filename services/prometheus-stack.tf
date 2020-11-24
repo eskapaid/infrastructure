@@ -18,9 +18,9 @@ module "acm" {
   version = "~> v2.0"
 
   domain_name = "grafana.${var.environment}.${var.domain}"
-  subject_alternative_names = [
-    "grafana.${var.environment}.${var.domain}",
-  ]
+  # subject_alternative_names = [
+  #   "grafana.${var.environment}.${var.domain}",
+  # ]
   zone_id              = data.aws_route53_zone.current.id
   create_certificate   = true
   validate_certificate = true

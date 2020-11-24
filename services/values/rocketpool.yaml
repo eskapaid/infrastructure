@@ -63,7 +63,7 @@ lighthouse:
     pullPolicy: Always
 
   debugLevel: info
-  # TODO change to network with LH 1.0.0
+  # TODO change to "network" with LH 1.0.0
   testnet: pyrmont
   graffiti: eskapaid.dev
 
