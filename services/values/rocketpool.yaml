@@ -65,7 +65,7 @@ lighthouse:
   debugLevel: info
   # TODO change to network with LH 1.0.0
   testnet: pyrmont
-  graffiti: '-'
+  graffiti: eskapaid.dev
 
 prysm:
   image:
@@ -77,4 +77,4 @@ prysm:
   tcpPort: 9001
   udpPort: 9001
   monitoringPort: 8081
-  graffiti: '-'
+  graffiti: eskapaid.dev

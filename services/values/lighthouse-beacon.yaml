@@ -17,7 +17,7 @@ container:
     - --metrics
     - --metrics-address
     - "0.0.0.0"
-    - --eth1-endpoint=${eth1endpoint}
+    - --eth1-endpoint=http://geth-goerli:8545/
 
 ports:
   http: 5052

@@ -16,8 +16,8 @@ container:
     - pyrmont
     - --beacon-node
     - http://lighthouse-beacon:5052
-    # - --graffiti
-    # - 'eskapa.id'
+    - --graffiti
+    - 'eskapaid.dev'
     - --init-slashing-protection
     - --delete-lockfiles
 
