@@ -66,6 +66,9 @@ lighthouse:
   network: pyrmont
   graffiti: eskapaid.dev
 
+  ports:
+    metrics: 5064
+
 prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator

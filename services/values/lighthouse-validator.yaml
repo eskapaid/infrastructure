@@ -36,7 +36,7 @@ secretMounts:
     path: /data/mount
 
 ports:
-  metrics: 5054
+  metrics: 5064
 
 storage:
   capacity: 1Gi
