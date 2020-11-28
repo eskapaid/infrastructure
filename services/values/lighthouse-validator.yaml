@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v1.0.0
+  tag: v1.0.1
 
 container:
   command:
@@ -11,15 +11,17 @@ container:
     - /data
     - --debug-level
     - info
+    - --metrics
+    - --metrics-address
+    - "0.0.0.0"
     - --disable-auto-discover
+    - --init-slashing-protection
     - --network
     - pyrmont
     - --beacon-node
     - http://lighthouse-beacon:5052
     - --graffiti
     - 'eskapaid.dev'
-    - --init-slashing-protection
-    - --delete-lockfiles
 
 # A list of secrets and their paths to mount inside the pod
 # keystore secret containing keystore.json

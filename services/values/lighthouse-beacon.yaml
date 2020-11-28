@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v1.0.0
+  tag: v1.0.1
   pullPolicy: Always
 
 container:
@@ -17,7 +17,7 @@ container:
     - --metrics
     - --metrics-address
     - "0.0.0.0"
-    - --eth1-endpoint=http://geth-goerli:8545/
+    - --eth1-endpoints=http://geth-goerli:8545/,${eth1endpoint}
 
 ports:
   http: 5052
