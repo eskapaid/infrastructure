@@ -76,7 +76,7 @@ prysm:
     pullPolicy: Always
 
   verbosity: info
-  tcpPort: 9001
-  udpPort: 9001
-  monitoringPort: 8081
   graffiti: eskapaid.dev
+
+  ports:
+    metrics: 8081
