@@ -5,7 +5,7 @@ image:
 container:
   command:
     - lighthouse
-    - validator_client
+    - validator
   args:
     - --datadir
     - /data
