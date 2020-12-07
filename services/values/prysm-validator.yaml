@@ -1,6 +1,6 @@
 image:
   repository: gcr.io/prysmaticlabs/prysm/validator
-  tag: v1.0.1
+  tag: v1.0.3
 
 containerArgs:
   - --config-file
@@ -53,7 +53,7 @@ slasher:
 
   image:
     repository: gcr.io/prysmaticlabs/prysm/slasher
-    tag: v1.0.1
+    tag: v1.0.3
 
   args:
     - --beacon-rpc-provider=prysm-beacon:4000
