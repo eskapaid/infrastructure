@@ -1,6 +1,6 @@
 image:
   repository: rocketpool/smartnode
-  tag: v0.0.8
+  tag: v0.0.9
   pullPolicy: Always
 
 storageAddress: 0xA85A8022E8F28E49B8BBfb792f93ee914B342C3b
