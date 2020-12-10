@@ -10,9 +10,9 @@ datadir: /.rocketpool
 
 eth1:
   proxy: false
-  # provider: http://rocketpool-proxy:8545
-  infuraId: ${infura_id}
   provider: http://geth-goerli:8545
+  # provider: http://rocketpool-proxy:8545
+  # infuraId: ${infura_id}
 
 eth2:
   # pick one or the other and set the provider accordingly
