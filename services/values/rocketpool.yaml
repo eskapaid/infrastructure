@@ -36,6 +36,20 @@ ports:
   metrics: 5052
 
 
+metrics:
+  image:
+    repository: eskp/rocketpool-metrics
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+
 cli:
   image:
     repository: eskp/rocketpool-cli
