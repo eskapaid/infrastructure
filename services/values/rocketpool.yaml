@@ -86,7 +86,7 @@ lighthouse:
 prysm:
   image:
     repository: gcr.io/prysmaticlabs/prysm/validator
-    tag: v1.0.3
+    tag: v1.1.0
     pullPolicy: Always
 
   verbosity: info
