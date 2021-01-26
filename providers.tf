@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
 
   backend "remote" {
     hostname     = "app.terraform.io"
@@ -9,11 +9,34 @@ terraform {
       prefix = "infrastructure-"
     }
   }
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+    external = {
+      source = "hashicorp/external"
+    }
+    helm = {
+      source = "hashicorp/helm"
+    }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+    }
+    local = {
+      source = "hashicorp/local"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+    template = {
+      source = "hashicorp/template"
+    }
+  }
 }
 
 provider "aws" {
-  version = "~> 2"
-  region  = "ap-southeast-1"
+  region = "ap-southeast-1"
 
   assume_role {
     role_arn = var.tf_cloud_role # Set in Terraform Cloud Variables tab
@@ -21,28 +44,19 @@ provider "aws" {
 }
 
 # Use template file and fill in the computed values
-provider "template" {
-  version = "~> 2.1"
-}
+provider "template" {}
 
 # Write a file to local disk
-provider "local" {
-  version = "~> 1.4"
-}
+provider "local" {}
 
 # Query external data sources eg. bash scripts
-provider "external" {
-  version = "~> 1.2"
-}
+provider "external" {}
 
 # allows the use of randomness within Terraform configurations
-provider "random" {
-  version = "~> 2.3"
-}
+provider "random" {}
 
 # For K8s deployment resources
 provider "kubernetes" {
-  version                = "~> 1.11"
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
@@ -51,8 +65,6 @@ provider "kubernetes" {
 
 # Deploy Helm charts with Terraform
 provider "helm" {
-  version = "~> 1.0"
-
   kubernetes {
     load_config_file       = false
     host                   = data.aws_eks_cluster.cluster.endpoint
