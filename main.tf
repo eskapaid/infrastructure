@@ -46,7 +46,7 @@ module "eks" {
   enable_irsa                     = true
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access  = true
-  cluster_enabled_log_types       = ["api", "audit", "authenticator"]
+  cluster_enabled_log_types       = [] # ["api", "audit", "authenticator"]
   manage_cluster_iam_resources    = true
   manage_worker_iam_resources     = true
   cluster_log_retention_in_days   = "90"
