@@ -23,7 +23,7 @@ module "iam_assumable_role_admin" {
   role_name                     = "cert-manager"
   provider_url                  = replace(var.oidc_issuer_url, "https://", "")
   role_policy_arns              = [aws_iam_policy.cert_manager.arn]
-  oidc_fully_qualified_subjects = ["system:serviceaccount:${kubernetes_namespace.services.metadata.0.name}:cert-manager"]
+  oidc_fully_qualified_subjects = ["system:serviceaccount:${helm_release.cert_manager.metadata.0.namespace}:cert-manager"]
 }
 
 resource "aws_iam_policy" "cert_manager" {
