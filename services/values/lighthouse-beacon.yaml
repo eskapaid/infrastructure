@@ -45,5 +45,9 @@ affinity:
               values:
                 - public
 
+service:
+  enabled: true
+  type: NodePort
+
 servicemonitor:
   enabled: true
