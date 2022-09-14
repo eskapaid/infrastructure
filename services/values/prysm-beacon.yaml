@@ -8,9 +8,9 @@ containerArgs:
   - /data/config/prysm-beacon.yaml
   - --disable-grpc-gateway # to avoid /healthz reporting unhealthy
   - --dev
-  # - --http-web3provider=${eth1endpoint} # leave Infura as a backup option
-  # - --eth1-header-req-limit=150 # uncomment if Infura is enabled above
   - --http-web3provider=http://geth-goerli:8545/
+  - --fallback-web3provider=${eth1endpoint} # Infura as a backup option
+  # - --eth1-header-req-limit=150 # uncomment if Infura is enabled above
   - --accept-terms-of-use
   - --pyrmont
 

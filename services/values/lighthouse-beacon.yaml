@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v1.1.0
+  tag: v3.1.0
   pullPolicy: Always
 
 container:

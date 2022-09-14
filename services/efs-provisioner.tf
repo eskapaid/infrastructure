@@ -1,7 +1,7 @@
 resource "helm_release" "efs_provisioner" {
   name       = "efs-provisioner"
   chart      = "efs-provisioner"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   version    = "0.13.0"
   namespace  = "default"
 

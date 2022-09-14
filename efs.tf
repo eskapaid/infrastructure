@@ -6,6 +6,15 @@ resource "aws_efs_file_system" "rocketpool" {
   }
 }
 
+# TODO replace with
+
+# resource "aws_efs_mount_target" "target" {
+#   count           = length(module.vpc.private_subnets)
+#   subnet_id       = module.vpc.private_subnets[count.index]
+#   file_system_id  = aws_efs_file_system.rocketpool.id
+#   security_groups = [aws_security_group.efs.id]
+# }
+
 resource "aws_efs_mount_target" "rocketpool_a" {
   file_system_id  = aws_efs_file_system.rocketpool.id
   subnet_id       = module.vpc.private_subnets.0
