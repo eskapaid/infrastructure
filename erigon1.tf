@@ -22,11 +22,17 @@ module "erigon1_mainnet" {
   ]
   ebs_block_device = [
     {
-      device_name = "/dev/sdf"
+      device_name = "/dev/sdd"
       volume_type = "gp3"
-      volume_size = 3000
+      volume_size = 1000
       iops        = 16000
-      snapshot_id = "snap-0062853a88316e955"
     }
+    # {
+    #   device_name = "/dev/sdf"
+    #   volume_type = "gp3"
+    #   volume_size = 3000
+    #   iops        = 16000
+    #   snapshot_id = "snap-0062853a88316e955"
+    # }
   ]
 }
