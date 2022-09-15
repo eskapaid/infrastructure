@@ -1,6 +1,6 @@
 module "erigon1_mainnet" {
   source             = "app.terraform.io/eskapaid/ubuntu/aws"
-  version            = "1.0.2-beta"
+  version            = "~> 1.0"
   name               = "erigon1-mainnet"
   subdomain_name     = "erigon1.mainnet.eskapaid.dev"
   zone_name          = "eskapaid.dev"
