@@ -31,6 +31,22 @@ resource "aws_security_group" "erigon1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # Lighthouse
+  ingress {
+    from_port   = 9000
+    to_port     = 9000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Lighthouse
+  ingress {
+    from_port   = 9000
+    to_port     = 9000
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # HTTP access from anywhere for Letsencrypt
   ingress {
     from_port   = 80
