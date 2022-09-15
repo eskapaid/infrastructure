@@ -4,7 +4,7 @@ module "erigon1_mainnet" {
   name               = "erigon1-mainnet"
   subdomain_name     = "erigon1.mainnet.eskapaid.dev"
   zone_name          = "eskapaid.dev"
-  instance_type      = "m5n.2xlarge"
+  instance_type      = "m5ad.2xlarge"
   env                = var.environment
   vpc_id             = module.vpc.vpc_id
   subnet_id          = module.vpc.public_subnets[2]
