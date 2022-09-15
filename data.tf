@@ -14,8 +14,9 @@ data "aws_caller_identity" "current" {}
 
 ## data for erigon1
 data "template_file" "userdata_erigon1" {
-  template = formatlist("%s",
-  [file("templates/common/userdata.sh")])
+  template = join("", formatlist("%s", [
+    file("templates/common/userdata.sh")
+  ]))
   # file("templates/erigon/userdata.sh"),
   # file("templates/lighthouse/userdata.sh"))
   vars = {
