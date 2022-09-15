@@ -22,7 +22,7 @@ data "template_file" "userdata_erigon1" {
   vars = {
     subdomain_name    = "erigon1.mainnet.eskapaid.dev"
     certificate_email = "simon@eskapa.id"
-    snapshot          = "snap-0062853a88316e955"
+    snapshot          = "" #"snap-0062853a88316e955"
     network           = "mainnet"
     http_apis         = "eth,debug,net,trace,web3,erigon,engine"
     http_port         = "8545"
