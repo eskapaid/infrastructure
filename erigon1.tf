@@ -10,7 +10,7 @@ module "erigon1_mainnet" {
   subnet_id          = module.vpc.public_subnets[2]
   security_group_ids = [aws_security_group.erigon1.id]
   enable_eip         = true
-  enable_dns         = true
+  enable_dns         = false
   enable_monitoring  = false
   pd_webhook         = ""
   user_data          = data.template_file.userdata_erigon1.rendered
