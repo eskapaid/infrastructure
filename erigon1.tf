@@ -29,5 +29,4 @@ module "erigon1_mainnet" {
       snapshot_id = "snap-0062853a88316e955"
     }
   ]
-  tags = var.tags
 }
