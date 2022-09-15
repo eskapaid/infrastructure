@@ -32,7 +32,7 @@ ExecStart=/usr/local/bin/lighthouse bn \
     --execution-endpoint http://127.0.0.1:8551 \
     --metrics \
     --validator-monitor-auto \
-    --checkpoint-sync-url https://1zw7FisyonqqQIcW2AIyHmN0nm4:f80283a2925ce67ae25572e04d992241@eth2-beacon-mainnet.infura.io \
+    --checkpoint-sync-url https://mainnet.checkpoint-sync.ethpandaops.io \
     --execution-jwt /var/lib/ethereum/jwttoken
 
 [Install]

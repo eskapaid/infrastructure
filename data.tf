@@ -15,14 +15,14 @@ data "aws_caller_identity" "current" {}
 ## data for erigon1
 data "template_file" "userdata_erigon1" {
   template = join("", formatlist("%s", [
-    file("templates/common/userdata.sh")
+    file("templates/common/userdata.sh"),
+    file("templates/erigon/userdata.sh"),
+    file("templates/lighthouse/userdata.sh")
   ]))
-  # file("templates/erigon/userdata.sh"),
-  # file("templates/lighthouse/userdata.sh"))
   vars = {
     subdomain_name    = "erigon1.mainnet.eskapaid.dev"
     certificate_email = "simon@eskapa.id"
-    snapshot          = "" #"snap-0062853a88316e955"
+    snapshot          = "snap-0062853a88316e955"
     network           = "mainnet"
     http_apis         = "eth,debug,net,trace,web3,erigon,engine"
     http_port         = "8545"
